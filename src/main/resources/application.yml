@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/regex_keyboard?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: eugen
+    password: regex
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  # HTTP ENCODING
+  thymeleaf:
+    prefix: classpath:/templates/
+  http:
+    encoding.charset: UTF-8
+    encoding.enable: true
+    encoding.force: true
+  mvc:
+    view:
+      prefix: classpath:/WEB-INF/jsp/
+      suffix: .jsp
