@@ -1,9 +1,6 @@
 package regex.keyboard.infra.dataobject;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @Description: dataobject, record the system's text strategy
@@ -12,21 +9,21 @@ import javax.persistence.Table;
  * @CreateDate: 2018/5/21 11:41
  */
 @Entity
-@Table(name = "strategydo")
+@Table(name = "strategy")
 public class StrategyDO {
     @Id
     @GeneratedValue
     private Long id;
-    private Long strategyId;
+    @Column(nullable = false, unique = true)
     private String strategyRegex;
+    @Column(nullable = false)
     private String strategyUse;
 
     public StrategyDO() {
     }
 
-    public StrategyDO(Long id, Long strategyId, String strategyRegex, String strategyUse) {
-        this.id = id;
-        this.strategyId = strategyId;
+    public StrategyDO(Long id,String strategyRegex, String strategyUse) {
+        this.id=id;
         this.strategyRegex = strategyRegex;
         this.strategyUse = strategyUse;
     }
@@ -37,14 +34,6 @@ public class StrategyDO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getStrategyId() {
-        return strategyId;
-    }
-
-    public void setStrategyId(Long strategyId) {
-        this.strategyId = strategyId;
     }
 
     public String getStrategyRegex() {

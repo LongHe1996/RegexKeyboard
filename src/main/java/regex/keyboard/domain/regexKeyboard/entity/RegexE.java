@@ -8,16 +8,14 @@ package regex.keyboard.domain.regexKeyboard.entity;
  */
 public class RegexE {
     private Long id;
-    private Long regexId;
     private String regexContent;
     private String regexDescribe;
 
     public RegexE() {
     }
 
-    public RegexE(Long id, Long regexId, String regexContent, String regexDescribe) {
+    public RegexE(Long id, String regexContent, String regexDescribe) {
         this.id = id;
-        this.regexId = regexId;
         this.regexContent = regexContent;
         this.regexDescribe = regexDescribe;
     }
@@ -28,14 +26,6 @@ public class RegexE {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getRegexId() {
-        return regexId;
-    }
-
-    public void setRegexId(Long regexId) {
-        this.regexId = regexId;
     }
 
     public String getRegexContent() {
@@ -58,7 +48,6 @@ public class RegexE {
     public String toString() {
         return "RegexE{" +
                 "id=" + id +
-                ", regexId=" + regexId +
                 ", regexContent='" + regexContent + '\'' +
                 ", regexDescribe='" + regexDescribe + '\'' +
                 '}';

@@ -1,10 +1,7 @@
 package regex.keyboard.infra.dataobject;
 
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @Description: dataobject, record the answer information.
@@ -13,24 +10,26 @@ import javax.persistence.Table;
  * @CreateDate: 2018/5/21 11:55
  */
 @Entity
-@Table(name = "answerdo")
+@Table(name = "answer")
 public class AnswerDO {
     @Id
     @GeneratedValue
     private Long id;
-    private Long answerId;
+    @Column(nullable = false)
     private String answerContent;
+    @Column(nullable = false)
     private Long respondent;
+    @Column(nullable = false)
     private Long questionId;
     private Date putTime;
+    @Column(nullable = false)
     private Boolean isAccepted;
 
     public AnswerDO() {
     }
 
-    public AnswerDO(Long id, Long answerId, String answerContent, Long respondent, Long questionId, Date putTime, Boolean isAccepted) {
-        this.id = id;
-        this.answerId = answerId;
+    public AnswerDO(Long id,String answerContent, Long respondent, Long questionId, Date putTime, Boolean isAccepted) {
+        this.id=id;
         this.answerContent = answerContent;
         this.respondent = respondent;
         this.questionId = questionId;
@@ -44,14 +43,6 @@ public class AnswerDO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getAnswerId() {
-        return answerId;
-    }
-
-    public void setAnswerId(Long answerId) {
-        this.answerId = answerId;
     }
 
     public String getAnswerContent() {

@@ -1,9 +1,6 @@
 package regex.keyboard.infra.dataobject;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @Description: dataobject, record the regex rules
@@ -12,22 +9,23 @@ import javax.persistence.Table;
  * @CreateDate: 2018/5/21 11:46
  */
 @Entity
-@Table(name = "regex_rulesdo")
+@Table(name = "regex_rules")
 public class RegexRulesDO {
     @Id
     @GeneratedValue
     private Long id;
-    private Long ruleId;
+    @Column(nullable = false, unique = true)
     private String ruleContent;
+    @Column(nullable = false, unique = true)
     private String ruleDescribe;
+    @Column(nullable = false)
     private Long ruleNature;
 
     public RegexRulesDO() {
     }
 
-    public RegexRulesDO(Long id,Long ruleId, String ruleContent, String ruleDescribe, Long ruleNature) {
+    public RegexRulesDO(Long id,String ruleContent, String ruleDescribe, Long ruleNature) {
         this.id=id;
-        this.ruleId = ruleId;
         this.ruleContent = ruleContent;
         this.ruleDescribe = ruleDescribe;
         this.ruleNature = ruleNature;
@@ -39,14 +37,6 @@ public class RegexRulesDO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getRuleId() {
-        return ruleId;
-    }
-
-    public void setRuleId(Long ruleId) {
-        this.ruleId = ruleId;
     }
 
     public String getRuleContent() {

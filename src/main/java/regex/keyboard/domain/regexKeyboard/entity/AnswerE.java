@@ -10,7 +10,6 @@ import java.util.Date;
  */
 public class AnswerE {
     private Long id;
-    private Long answerId;
     private String answerContent;
     private UserE respondent;
     private QuestionE question;
@@ -20,9 +19,8 @@ public class AnswerE {
     public AnswerE() {
     }
 
-    public AnswerE(Long id, Long answerId, String answerContent, UserE respondent, QuestionE question, Date putTime, Boolean isAccepted) {
+    public AnswerE(Long id, String answerContent, UserE respondent, QuestionE question, Date putTime, Boolean isAccepted) {
         this.id = id;
-        this.answerId = answerId;
         this.answerContent = answerContent;
         this.respondent = respondent;
         this.question = question;
@@ -36,14 +34,6 @@ public class AnswerE {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getAnswerId() {
-        return answerId;
-    }
-
-    public void setAnswerId(Long answerId) {
-        this.answerId = answerId;
     }
 
     public String getAnswerContent() {
@@ -90,7 +80,6 @@ public class AnswerE {
     public String toString() {
         return "AnswerE{" +
                 "id=" + id +
-                ", answerId=" + answerId +
                 ", answerContent='" + answerContent + '\'' +
                 ", respondent=" + respondent +
                 ", question=" + question +

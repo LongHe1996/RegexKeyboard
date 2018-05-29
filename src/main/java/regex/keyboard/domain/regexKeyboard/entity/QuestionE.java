@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class QuestionE {
     private Long id;
-    private Long questionId;
+    private String questionTitle;
     private String questionContent;
     private UserE questioner;
     private Date putTime;
@@ -20,9 +20,9 @@ public class QuestionE {
     public QuestionE() {
     }
 
-    public QuestionE(Long id, Long questionId, String questionContent, UserE questioner, Date putTime, Boolean isSolved, AnswerE acceptAnswer) {
+    public QuestionE(Long id, String questionTitle, String questionContent, UserE questioner, Date putTime, Boolean isSolved, AnswerE acceptAnswer) {
         this.id = id;
-        this.questionId = questionId;
+        this.questionTitle = questionTitle;
         this.questionContent = questionContent;
         this.questioner = questioner;
         this.putTime = putTime;
@@ -38,12 +38,12 @@ public class QuestionE {
         this.id = id;
     }
 
-    public Long getQuestionId() {
-        return questionId;
+    public String getQuestionTitle() {
+        return questionTitle;
     }
 
-    public void setQuestionId(Long questionId) {
-        this.questionId = questionId;
+    public void setQuestionTitle(String questionTitle) {
+        this.questionTitle = questionTitle;
     }
 
     public String getQuestionContent() {
@@ -90,7 +90,7 @@ public class QuestionE {
     public String toString() {
         return "QuestionE{" +
                 "id=" + id +
-                ", questionId=" + questionId +
+                ", questionTitle='" + questionTitle + '\'' +
                 ", questionContent='" + questionContent + '\'' +
                 ", questioner=" + questioner +
                 ", putTime=" + putTime +

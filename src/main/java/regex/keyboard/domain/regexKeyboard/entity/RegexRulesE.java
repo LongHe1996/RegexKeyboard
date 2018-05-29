@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class RegexRulesE {
     private Long id;
-    private Long ruleId;
     private String ruleContent;
     private String ruleDescribe;
     private Long ruleNature;
@@ -19,9 +18,8 @@ public class RegexRulesE {
     public RegexRulesE() {
     }
 
-    public RegexRulesE(Long id, Long ruleId, String ruleContent, String ruleDescribe, Long ruleNature) {
+    public RegexRulesE(Long id, String ruleContent, String ruleDescribe, Long ruleNature) {
         this.id = id;
-        this.ruleId = ruleId;
         this.ruleContent = ruleContent;
         this.ruleDescribe = ruleDescribe;
         this.ruleNature = ruleNature;
@@ -33,14 +31,6 @@ public class RegexRulesE {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getRuleId() {
-        return ruleId;
-    }
-
-    public void setRuleId(Long ruleId) {
-        this.ruleId = ruleId;
     }
 
     public String getRuleContent() {
@@ -71,7 +61,6 @@ public class RegexRulesE {
     public String toString() {
         return "RegexRulesE{" +
                 "id=" + id +
-                ", ruleId=" + ruleId +
                 ", ruleContent='" + ruleContent + '\'' +
                 ", ruleDescribe='" + ruleDescribe + '\'' +
                 ", ruleNature=" + ruleNature +

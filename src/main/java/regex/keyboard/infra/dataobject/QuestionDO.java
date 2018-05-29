@@ -1,10 +1,7 @@
 package regex.keyboard.infra.dataobject;
 
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @Description: dataobject.record the question information.
@@ -13,24 +10,27 @@ import javax.persistence.Table;
  * @CreateDate: 2018/5/21 11:52
  */
 @Entity
-@Table(name = "questiondo")
+@Table(name = "question")
 public class QuestionDO {
     @Id
     @GeneratedValue
     private Long id;
-    private Long questionId;
+    @Column(nullable = false)
+    private String questionTitle;
     private String questionContent;
+    @Column(nullable = false)
     private Long questioner;
     private Date putTime;
+    @Column(nullable = false)
     private Boolean isSolved;
     private Long acceptAnswer;
 
     public QuestionDO() {
     }
 
-    public QuestionDO(Long id, Long questionId, String questionContent, Long questioner, Date putTime, Boolean isSolved, Long acceptAnswer) {
-        this.id = id;
-        this.questionId = questionId;
+    public QuestionDO(Long id,String questionTitle, String questionContent, Long questioner, Date putTime, Boolean isSolved, Long acceptAnswer) {
+        this.id=id;
+        this.questionTitle = questionTitle;
         this.questionContent = questionContent;
         this.questioner = questioner;
         this.putTime = putTime;
@@ -46,12 +46,12 @@ public class QuestionDO {
         this.id = id;
     }
 
-    public Long getQuestionId() {
-        return questionId;
+    public String getQuestionTitle() {
+        return questionTitle;
     }
 
-    public void setQuestionId(Long questionId) {
-        this.questionId = questionId;
+    public void setQuestionTitle(String questionTitle) {
+        this.questionTitle = questionTitle;
     }
 
     public String getQuestionContent() {

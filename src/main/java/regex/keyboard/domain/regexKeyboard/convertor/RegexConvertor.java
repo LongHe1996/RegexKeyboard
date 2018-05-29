@@ -15,11 +15,11 @@ public class RegexConvertor implements ConvertorI<RegexDO,RegexE> {
 
     @Override
     public RegexE doToEntity(RegexDO dataObject) {
-        return new RegexE(dataObject.getId(),dataObject.getRegexId(),dataObject.getRegexContent(),dataObject.getRegexDescribe());
+        return new RegexE(dataObject.getId(),dataObject.getRegexContent(),dataObject.getRegexDescribe());
     }
 
     @Override
     public RegexDO entityToDo(RegexE entity) {
-        return new RegexDO(entity.getId(),entity.getRegexId(),entity.getRegexContent(),entity.getRegexDescribe());
+        return new RegexDO(entity.getId(),entity.getRegexContent(),entity.getRegexDescribe());
     }
 }

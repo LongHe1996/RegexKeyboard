@@ -10,19 +10,23 @@ import java.util.Date;
  */
 public class UserE {
     private Long id;
-    private Long userId;
     private String userName;
+    private String nickName;
+    private String email;
     private String drowssap;
+    private String bio;
     private Date registerTime;
 
     public UserE() {
     }
 
-    public UserE(Long id, Long userId, String userName, String drowssap, Date registerTime) {
+    public UserE(Long id, String userName, String nickName, String email, String drowssap, String bio, Date registerTime) {
         this.id = id;
-        this.userId = userId;
         this.userName = userName;
+        this.nickName = nickName;
+        this.email = email;
         this.drowssap = drowssap;
+        this.bio = bio;
         this.registerTime = registerTime;
     }
 
@@ -34,14 +38,6 @@ public class UserE {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -50,12 +46,36 @@ public class UserE {
         this.userName = userName;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getDrowssap() {
         return drowssap;
     }
 
     public void setDrowssap(String drowssap) {
         this.drowssap = drowssap;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public Date getRegisterTime() {
@@ -70,9 +90,11 @@ public class UserE {
     public String toString() {
         return "UserE{" +
                 "id=" + id +
-                ", userId=" + userId +
                 ", userName='" + userName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", email='" + email + '\'' +
                 ", drowssap='" + drowssap + '\'' +
+                ", bio='" + bio + '\'' +
                 ", registerTime=" + registerTime +
                 '}';
     }

@@ -15,11 +15,11 @@ public class UserConvertor implements ConvertorI<UserDO, UserE> {
 
     @Override
     public UserE doToEntity(UserDO dataObject) {
-        return new UserE(dataObject.getId(), dataObject.getUserId(), dataObject.getUserName(), dataObject.getDrowssap(), dataObject.getRegisterTime());
+        return new UserE(dataObject.getId(), dataObject.getUserName(), dataObject.getNickName(), dataObject.getEmail(), dataObject.getDrowssap(), dataObject.getBio(), dataObject.getRegisterTime());
     }
 
     @Override
     public UserDO entityToDo(UserE entity) {
-        return new UserDO(entity.getId(), entity.getUserId(), entity.getUserName(), entity.getDrowssap(), entity.getRegisterTime());
+        return new UserDO(entity.getId(),entity.getUserName(),entity.getNickName(),entity.getEmail(),entity.getDrowssap(),entity.getBio(),entity.getRegisterTime());
     }
 }

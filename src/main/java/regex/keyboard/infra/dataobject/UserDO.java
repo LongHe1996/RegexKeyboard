@@ -1,10 +1,7 @@
 package regex.keyboard.infra.dataobject;
 
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @Description: dataobject ,record the registered user information
@@ -13,24 +10,31 @@ import javax.persistence.Table;
  * @CreateDate: 2018/5/21 11:40
  */
 @Entity
-@Table(name = "userdo")
+@Table(name = "user")
 public class UserDO {
     @Id
     @GeneratedValue
     private Long id;
-    private Long userId;
+    @Column(nullable = false, unique = true)
     private String userName;
+    private String nickName;
+    @Column(nullable = false, unique = true)
+    private String email;
+    @Column(nullable = false)
     private String drowssap;
+    private String bio;
     private Date registerTime;
 
     public UserDO() {
     }
 
-    public UserDO(Long id,Long userId, String userName, String drowssap, Date registerTime) {
+    public UserDO(Long id,String userName, String nickName, String email, String drowssap, String bio, Date registerTime) {
         this.id=id;
-        this.userId = userId;
         this.userName = userName;
+        this.nickName = nickName;
+        this.email = email;
         this.drowssap = drowssap;
+        this.bio = bio;
         this.registerTime = registerTime;
     }
 
@@ -42,14 +46,6 @@ public class UserDO {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -58,12 +54,36 @@ public class UserDO {
         this.userName = userName;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getDrowssap() {
         return drowssap;
     }
 
     public void setDrowssap(String drowssap) {
         this.drowssap = drowssap;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public Date getRegisterTime() {

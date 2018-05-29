@@ -33,12 +33,12 @@ public class QuestionConvertor implements ConvertorI<QuestionDO, QuestionE> {
         UserE userE = userConvertor.doToEntity(userDO);
         AnswerDO answerDO = answerRepository.findOne(dataObject.getAcceptAnswer());
         AnswerE answerE = answerConvertor.doToEntity(answerDO);
-        return new QuestionE(dataObject.getId(), dataObject.getQuestionId(), dataObject.getQuestionContent(), userE, dataObject.getPutTime(), dataObject.getSolved(), answerE);
+        return new QuestionE(dataObject.getId(), dataObject.getQuestionTitle(),dataObject.getQuestionContent(), userE, dataObject.getPutTime(), dataObject.getSolved(), answerE);
     }
 
     @Override
     public QuestionDO entityToDo(QuestionE entity) {
-        return new QuestionDO(entity.getId(), entity.getQuestionId(), entity.getQuestionContent(), entity.getQuestioner().getId(), entity.getPutTime(), entity.getSolved(), entity.getAcceptAnswer().getId());
+        return new QuestionDO(entity.getId(),entity.getQuestionTitle(), entity.getQuestionContent(), entity.getQuestioner().getId(), entity.getPutTime(), entity.getSolved(), entity.getAcceptAnswer().getId());
     }
 
 }

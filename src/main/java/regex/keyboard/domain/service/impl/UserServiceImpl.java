@@ -19,10 +19,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO create(UserE userE) {
         UserDO userDO = userConvertor.entityToDo(userE);
-        //1.userId重复
-        if (userRepository.findByUserId(userDO.getUserId()) != null) {
-            return new UserDTO(null, "error.create.user.userid.exist.");
-        }
         UserDO saveUserDO = userRepository.save(userDO);
         return new UserDTO(userConvertor.doToEntity(saveUserDO), "success.create.user:" + saveUserDO);
     }
