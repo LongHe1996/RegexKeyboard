@@ -10,4 +10,12 @@ public class QuestionDTO {
         this.questionE = questionE;
         this.message = message;
     }
+
+    public QuestionE getQuestionE() {
+        return questionE;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

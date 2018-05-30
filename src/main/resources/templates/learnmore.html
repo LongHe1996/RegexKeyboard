@@ -86,10 +86,9 @@
 								<!-- Top Header -->
 								<div class="top-header">
 									<!-- Container -->
-									<div class="container no-padding">	
-										<div class="top-content">
-											<span><i class="fa fa-user-circle"></i> <a href="profile.html">username</a></span>
-											<span><i class="fa fa-heart"></i><a href="collection.html">collection</a></span>
+									<div class="container no-padding">
+										<div class="top-content logindiv">
+											<span class="loginname" style="width: 250px"><i class='fa fa-user-circle'></i></span>
 										</div>
 									</div><!-- Container /- -->
 								</div><!-- Top Header /- -->
@@ -277,7 +276,8 @@
 	
 	<!-- JQuery v1.12.4 -->
 	<script src="assets/js/jquery-1.12.4.min.js"></script>
-
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
 	<!-- Library - Js -->
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/lib.js"></script>
@@ -299,6 +299,20 @@
 	
 	<!-- Library - Theme JS -->
 	<script id="function" src="assets/js/functions.js"></script>
-	
+	<script>
+        $(document).ready(function () {
+            var name = $.cookie("LoginUserName");
+            var url1 = "\"profile.html\"";
+            var url2 = "\"\\\"";
+            var font = "\"fa fa-heart\"";
+            var url3 = "\"collection.html\"";
+            if (name != null) {
+                $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
+                $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>")
+            } else {
+                $(".loginname").append("<a href=" + url2 + ">尚未登录</a>");
+            }
+        })
+	</script>
 </body>
 </html>

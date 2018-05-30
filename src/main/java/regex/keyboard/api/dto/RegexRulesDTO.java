@@ -11,4 +11,12 @@ public class RegexRulesDTO {
         this.regexRulesE = regexRulesE;
         this.message = message;
     }
+
+    public RegexRulesE getRegexRulesE() {
+        return regexRulesE;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

@@ -10,4 +10,12 @@ public class RegexDTO {
         this.regexE = regexE;
         this.message = message;
     }
+
+    public RegexE getRegexE() {
+        return regexE;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

@@ -67,21 +67,9 @@
 								<!-- Top Header -->
 								<div class="top-header">
 									<!-- Container -->
-									<div class="container no-padding">	
-										<div class="top-content">
-											<span><i class="fa fa-phone"></i> <a href="tel:+386489550686">+386 489 550 686</a></span>
-											<span><i class="fa fa-envelope"></i> <a href="mailto:example@name.com">example@name.com</a></span>
-											<div class="header-social">
-												<i class="fa fa-heart"></i>
-												<ul>
-													<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-													<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-													<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-													<li><a href="#"><i class="fab fa-tumblr"></i></a></li>
-													<li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
-													<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-												</ul>
-											</div>
+									<div class="container no-padding">
+										<div class="top-content logindiv">
+											<span class="loginname" style="width: 250px"><i class='fa fa-user-circle'></i></span>
 										</div>
 									</div><!-- Container /- -->
 								</div><!-- Top Header /- -->
@@ -285,70 +273,23 @@
 								</div><!-- Row /- -->
 							</div><!-- Blog Listing /- -->	
 						</div><!-- Container /- -->
-						
+
 						<!-- Footer Section -->
 						<div class="footer-section">
-							<!-- Footer Widget -->
-							<div class="footer-widget">
-								<!-- Container -->
-								<div class="container p-0">			
-									<!-- Row -->
-									<div class="row">
-										<div class="col-xl-4 col-sm-6">
-											<!-- Widget : Services -->
-											<aside class="widget widget_meta">
-												<h3 class="widget-title">Services</h3>
-												<ul>
-													<li><a href="#">Installation</a></li>	
-													<li><a href="#">Maintenance & Repairs</a></li>
-													<li><a href="#">AC Replacement</a></li>
-													<li><a href="#">Air Quality</a></li>
-													<li><a href="#">Filter Cleaning</a></li>
-												</ul>
-											</aside><!-- Widget : Services /- -->
-										</div>
-										<div class="col-xl-4 col-sm-6">
-											<!-- Widget : About -->
-											<aside class="widget widget_meta">
-												<h3 class="widget-title">More Information</h3>
-												<ul>
-													<li><a href="#">Case Studies</a></li>	
-													<li><a href="#">News</a></li>
-													<li><a href="#">Certification</a></li>
-													<li><a href="#">Cookies & Privacy Policy</a></li>
-													<li><a href="#">Terms & Conditions</a></li>
-												</ul>
-											</aside><!-- Widget : About /- -->
-										</div>
-										<div class="col-xl-4 col-sm-6">
-											<!-- Widget : Contact Info -->
-											<aside class="widget widget_contact_info">
-												<h3 class="widget-title">Contact info</h3>
-												<div class="wid-cnt-detail">
-													<span><i class="fa fa-phone"></i> <a href="#">+386 489 550 686</a></span>
-													<span><i class="fa fa-envelope"></i> <a href="#">example@name.com</a></span>
-													<div class="header-social">
-														<i class="fa fa-heart"></i>
-														<ul>
-															<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-															<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-															<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-															<li><a href="#"><i class="fab fa-tumblr"></i></a></li>
-															<li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
-															<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-														</ul>
-													</div>
-												</div>
-											</aside><!-- Widget : Contact -->
-										</div>
-									</div><!-- Row /- -->
-								</div><!-- Container /- -->
-							</div><!-- Footer Widget /- -->
 							<div class="bottom-footer">
 								<!-- Container -->
 								<div class="container">
 									<div class="ftr-content">
-										<p>&copy; Air Conditioning Services 2018. All Rights Reserved</p>
+										<p><i class="fa fa-copyright"></i>&nbsp;Regex Keyboard 2018. All Rights Reserved&nbsp;&nbsp;
+											&nbsp;&nbsp;<a style="color: #ffffff" href="https://eugenhahaha.me"><i
+													class="fab fa-grav"></i>&nbsp;Eugen&nbsp;&nbsp;</a>
+											&nbsp;&nbsp;<a style="color: #ffffff"
+														   href="mailto:longhe1996@foxmail.com"><i
+													class="fa fa-envelope"></i>&nbsp;email&nbsp;&nbsp;</a>
+											&nbsp;&nbsp;<a style="color: #ffffff"
+														   href="https://github.com/LongHe1996/RegexKeyboard"><i
+													class="fab fa-github"></i>&nbsp;github&nbsp;&nbsp;</a>
+										</p>
 									</div>
 								</div><!-- Container /- -->
 							</div>
@@ -364,13 +305,28 @@
 	
 	<!-- JQuery v1.12.4 -->
 	<script src="assets/js/jquery-1.12.4.min.js"></script>
-
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
 	<!-- Library - Js -->
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/lib.js"></script>
 	
 	<!-- Library - Theme JS -->
 	<script id="function" src="assets/js/functions.js"></script>
-	
+	<script>
+        $(document).ready(function () {
+            var name = $.cookie("LoginUserName");
+            var url1 = "\"profile.html\"";
+            var url2 = "\"\\\"";
+            var font = "\"fa fa-heart\"";
+            var url3 = "\"collection.html\"";
+            if (name != null) {
+                $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
+                $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>")
+            } else {
+                $(".loginname").append("<a href=" + url2 + ">尚未登录</a>");
+            }
+        })
+	</script>
 </body>
 </html>

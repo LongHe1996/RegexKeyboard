@@ -161,12 +161,14 @@
     </h1>
     <p class="row row--intro" onclick="location='/home'"> >>>> Into the world of regular expressions
         >>>> </p>
-    <form action="/dologin" method="POST" style="text-align: center">
-        <input type="text" placeholder="Your name" name="userName"  required="required"/>
-        <input type="password" placeholder="Your Password" name="drowssap"  required="required"/>
-        <button type="submit" class="loginbtn">Login</button>
-        <label style="color:#fff" th:text="${error}"></label>
-        <button type="submit" class="loginbtn" onclick="location='/signup'">Sign Up</button>
+    <form action="/dosignup" method="POST" style="text-align: center"  >
+        <input type="text" placeholder="Login Name" name="userName"  style="width: 120px"  required="required" />
+        <input type="text" placeholder="Nick Name" name="nickName" style="width: 120px"  required="required" />
+        <input type="email" placeholder="Email" name="email" id="email" style="width: 120px"  required="required" />
+        <input type="password" placeholder="Password" name="drowssap" id="pwd1" style="width: 120px"  required="required"/>
+        <input type="password" placeholder="Password again" name="drowssap2" id="pwd2" style="width: 120px"  required="required"/>
+        <button type="submit" class="loginbtn">Sign Up</button>
+        <label id="errorlabel" style="color:#fff" th:text="${error}"></label>
     </form>
 </div>
 

@@ -17,5 +17,5 @@ public interface QuestionService {
 
     QuestionDTO selectById(Long id);
 
-    List<QuestionDTO> selectByUserId(Long userId);
+    List<QuestionDTO> selectByQuestioner(Long quesrioner);
 }

@@ -67,10 +67,9 @@
 														<!-- Top Header -->
 														<div class="top-header">
 															<!-- Container -->
-															<div class="container no-padding">	
-																<div class="top-content">
-																	<span><i class="fa fa-user-circle"></i> <a href="profile.html">username</a></span>
-																	<span><i class="fa fa-envelope"></i>useremail</span>
+															<div class="container no-padding">
+																<div class="top-content logindiv">
+																	<span class="loginname" style="width: 250px"><i class='fa fa-user-circle'></i></span>
 																</div>
 															</div><!-- Container /- -->
 														</div><!-- Top Header /- -->
@@ -173,22 +172,27 @@
 								</div>
 							</div><!-- FAQ Section /- -->
 						</div><!-- Container /- -->
-						
+
 						<!-- Footer Section -->
 						<div class="footer-section">
-								<div class="bottom-footer">
-									<!-- Container -->
-									<div class="container">
-										<div class="ftr-content">
-											<p><i class="fa fa-copyright"></i>&nbsp;Regex Keyboard 2018. All Rights Reserved&nbsp;&nbsp;
-												&nbsp;&nbsp;<a style="color: #ffffff" href="https://eugenhahaha.me"><i class="fab fa-grav"></i>&nbsp;Eugen&nbsp;&nbsp;</a>
-												&nbsp;&nbsp;<a style="color: #ffffff" href="mailto:longhe1996@foxmail.com"><i class="fa fa-envelope"></i>&nbsp;email&nbsp;&nbsp;</a>
-												&nbsp;&nbsp;<a style="color: #ffffff" href="https://github.com/LongHe1996/RegexKeyboard"><i class="fab fa-github"></i>&nbsp;github&nbsp;&nbsp;</a>
-											</p>
-										</div>
-									</div><!-- Container /- -->
-								</div>
-							</div><!-- Footer Section /- -->
+							<div class="bottom-footer">
+								<!-- Container -->
+								<div class="container">
+									<div class="ftr-content">
+										<p><i class="fa fa-copyright"></i>&nbsp;Regex Keyboard 2018. All Rights Reserved&nbsp;&nbsp;
+											&nbsp;&nbsp;<a style="color: #ffffff" href="https://eugenhahaha.me"><i
+													class="fab fa-grav"></i>&nbsp;Eugen&nbsp;&nbsp;</a>
+											&nbsp;&nbsp;<a style="color: #ffffff"
+														   href="mailto:longhe1996@foxmail.com"><i
+													class="fa fa-envelope"></i>&nbsp;email&nbsp;&nbsp;</a>
+											&nbsp;&nbsp;<a style="color: #ffffff"
+														   href="https://github.com/LongHe1996/RegexKeyboard"><i
+													class="fab fa-github"></i>&nbsp;github&nbsp;&nbsp;</a>
+										</p>
+									</div>
+								</div><!-- Container /- -->
+							</div>
+						</div><!-- Footer Section /- -->
 						
 					</div><!-- Content Area Block /- -->
 				</div>
@@ -200,13 +204,28 @@
 	
 	<!-- JQuery v1.12.4 -->
 	<script src="assets/js/jquery-1.12.4.min.js"></script>
-
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
 	<!-- Library - Js -->
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/lib.js"></script>
 	
 	<!-- Library - Theme JS -->
 	<script id="function" src="assets/js/functions.js"></script>
-	
+	<script>
+        $(document).ready(function () {
+            var name = $.cookie("LoginUserName");
+            var url1 = "\"profile.html\"";
+            var url2 = "\"\\\"";
+            var font = "\"fa fa-heart\"";
+            var url3 = "\"collection.html\"";
+            if (name != null) {
+                $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
+                $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>")
+            } else {
+                $(".loginname").append("<a href=" + url2 + ">尚未登录</a>");
+            }
+        })
+	</script>
 </body>
 </html>

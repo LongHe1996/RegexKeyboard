@@ -58,7 +58,10 @@ public class HtmlDefaultController {
     public String getSingleQuestionDefault(){
         return "/single-question";
     }
-
+    @GetMapping("signup")
+    public String getSignUpDefault(){
+        return "/signup";
+    }
 
     @RequestMapping("/hello")
     public String helloHtml(HashMap<String, Object> map) {

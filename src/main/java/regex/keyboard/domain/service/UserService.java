@@ -7,8 +7,10 @@ import regex.keyboard.domain.regexKeyboard.entity.UserE;
 @Service
 public interface UserService {
     UserDTO create(UserE userE);
-    String deleteById(Long id);
+    UserDTO deleteById(Long id);
     UserDTO update(UserE userE);
-    UserDTO selectByUserId(Long userId);
     UserDTO selectById(Long id);
+    UserDTO selectByUserName(String userName);
+    UserDTO selectByEmail(String email);
+    UserDTO selectByUserNameAndDrowssap(String userName,String drowssap);
 }

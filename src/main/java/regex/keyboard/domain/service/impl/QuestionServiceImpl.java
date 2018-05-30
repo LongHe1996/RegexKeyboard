@@ -57,7 +57,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionDTO> selectByUserId(Long questioner) {
+    public List<QuestionDTO> selectByQuestioner(Long questioner) {
         List<QuestionDTO> selectByQuestioner=new ArrayList<>();
         List<QuestionDO> byQuestioner = questionRepository.findByQuestioner(questioner);
         if(byQuestioner.isEmpty()){

@@ -10,4 +10,12 @@ public class StrategyDTO {
         this.strategyE = strategyE;
         this.message = message;
     }
+
+    public StrategyE getStrategyE() {
+        return strategyE;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }
