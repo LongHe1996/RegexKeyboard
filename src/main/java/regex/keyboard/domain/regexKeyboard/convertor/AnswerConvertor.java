@@ -1,7 +1,14 @@
 package regex.keyboard.domain.regexKeyboard.convertor;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import regex.keyboard.api.dto.AnswerDTO;
+import regex.keyboard.api.dto.OneForAllAnswersDTO;
+import regex.keyboard.api.dto.OneForAllQuestionDTO;
 import regex.keyboard.domain.regexKeyboard.entity.AnswerE;
 import regex.keyboard.domain.regexKeyboard.entity.QuestionE;
 import regex.keyboard.domain.regexKeyboard.entity.UserE;
@@ -40,6 +47,13 @@ public class AnswerConvertor implements ConvertorI<AnswerDO, AnswerE> {
     @Override
     public AnswerDO entityToDo(AnswerE entity) {
         return new AnswerDO(entity.getId(), entity.getAnswerContent(), entity.getRespondent().getId(), entity.getQuestion().getId(), entity.getPutTime(), entity.getAccepted());
+    }
+    public OneForAllAnswersDTO DtoToForView(AnswerDTO dto){
+        AnswerE entity = dto.getAnswerE();
+        //格式化时间
+        DateFormat bf = new SimpleDateFormat("HH:mm MM-dd yyyy");
+        String formatTime = bf.format(entity.getPutTime());
+        return new OneForAllAnswersDTO(entity.getId(),entity.getAnswerContent(),entity.getRespondent().getNickName(),entity.getQuestion().getId(),formatTime,entity.getAccepted());
     }
 
 }

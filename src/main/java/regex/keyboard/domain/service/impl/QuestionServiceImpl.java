@@ -22,17 +22,17 @@ public class QuestionServiceImpl implements QuestionService {
     public QuestionDTO create(QuestionE questionE) {
         QuestionDO questionDO=questionConvertor.entityToDo(questionE);
         QuestionDO saveQuestionDO = questionRepository.save(questionDO);
-        return new QuestionDTO(questionConvertor.doToEntity(saveQuestionDO),"success.create.question:"+saveQuestionDO.getQuestionContent());
+        return new QuestionDTO(questionConvertor.doToEntity(saveQuestionDO),"success.create.question:"+saveQuestionDO.getQuestionContent(),true);
     }
 
     @Override
-    public String deleteById(Long id) {
+    public QuestionDTO deleteById(Long id) {
         //1.question不存在
         if(questionRepository.findOne(id)==null){
-            return "error.delete.question.not.exist.id:" + id;
+            return new QuestionDTO(null,"error.delete.question.not.exist.id:" + id,false);
         }
         questionRepository.delete(id);
-        return "success.delete.question.id:" + id;
+        return new QuestionDTO(null,"success.delete.question.id:" + id,true);
     }
 
     @Override
@@ -40,20 +40,20 @@ public class QuestionServiceImpl implements QuestionService {
         QuestionDO questionDO = questionConvertor.entityToDo(questionE);
         //1.question不存在
         if(questionRepository.findOne(questionDO.getId())==null){
-            return new QuestionDTO(null, "error.update.question.accept.answer.not.exist." + questionDO.getId());
+            return new QuestionDTO(null, "error.update.question.accept.answer.not.exist." + questionDO.getId(),false);
         }
         questionDO.setAcceptAnswer(acceptAnswer);
         QuestionDO updateQuestionDO = questionRepository.save(questionDO);
-        return new QuestionDTO(questionConvertor.doToEntity(updateQuestionDO),"success.update.question.accept.answer:"+updateQuestionDO);
+        return new QuestionDTO(questionConvertor.doToEntity(updateQuestionDO),"success.update.question.accept.answer:"+updateQuestionDO,true);
     }
 
     @Override
     public QuestionDTO selectById(Long id) {
         QuestionDO questionDO = questionRepository.findOne(id);
         if(questionDO==null){
-            return new QuestionDTO(null, "error.select.question.not.exist.id:" + id);
+            return new QuestionDTO(null, "error.select.question.not.exist.id:" + id,false);
         }
-        return new QuestionDTO(questionConvertor.doToEntity(questionDO),"success.select.question.id:"+questionDO);
+        return new QuestionDTO(questionConvertor.doToEntity(questionDO),"success.select.question.id:"+questionDO,true);
     }
 
     @Override
@@ -61,14 +61,29 @@ public class QuestionServiceImpl implements QuestionService {
         List<QuestionDTO> selectByQuestioner=new ArrayList<>();
         List<QuestionDO> byQuestioner = questionRepository.findByQuestioner(questioner);
         if(byQuestioner.isEmpty()){
-            selectByQuestioner.add(new QuestionDTO(null,"error.select.question.not.exist.questioner"+questioner));
+            selectByQuestioner.add(new QuestionDTO(null,"error.select.question.not.exist.questioner"+questioner,false));
             return selectByQuestioner;
         }
         for (QuestionDO questionDO : byQuestioner
                 ) {
             QuestionE questionE=questionConvertor.doToEntity(questionDO);
-            selectByQuestioner.add(new QuestionDTO(questionE,"success.select.question.by.questioner:"+questioner));
+            selectByQuestioner.add(new QuestionDTO(questionE,"success.select.question.by.questioner:"+questioner,true));
         }
         return selectByQuestioner;
+    }
+
+    @Override
+    public List<QuestionDTO> selectAllSort() {
+        List<QuestionDTO> selectByOrderByPutTimeDesc=new ArrayList<>();
+        List<QuestionDO> byOrderByPutTimeDesc = questionRepository.findByOrderByPutTimeDesc();
+        if(byOrderByPutTimeDesc.isEmpty()){
+            selectByOrderByPutTimeDesc.add(new QuestionDTO(null,"error.selecy.all.question.",false));
+            return selectByOrderByPutTimeDesc;
+        }
+        for (QuestionDO questionDO:byOrderByPutTimeDesc){
+            QuestionE questionE = questionConvertor.doToEntity(questionDO);
+            selectByOrderByPutTimeDesc.add(new QuestionDTO(questionE,"success.select.all.question.",true));
+        }
+        return selectByOrderByPutTimeDesc;
     }
 }

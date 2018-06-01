@@ -8,7 +8,7 @@
 <!--[if IE 9 ]>
 <html class="ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en"><!--<![endif]-->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"><!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
 
@@ -18,7 +18,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Q&amp;A - Regex Keyboard</title>
+    <title>Question - Regex Keyboard</title>
 
     <!-- Standard Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images//favicon.ico"/>
@@ -81,8 +81,8 @@
                                 <!-- Container -->
                                 <div class="container no-padding">
                                     <div class="top-content logindiv">
-                                        <span class="loginname" style="width: 250px"><i
-                                                class='fa fa-user-circle'></i></span>
+											<span class="loginname" style="width: 250px"><i
+                                                    class='fa fa-user-circle'></i></span>
                                     </div>
                                 </div><!-- Container /- -->
                             </div><!-- Top Header /- -->
@@ -140,10 +140,10 @@
                     <div class="page-banner">
                         <!-- Container -->
                         <div class="container">
-                            <h3>Q&amp;A</h3>
+                            <h3>Single Question</h3>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active">Q&amp;A</li>
+                                <li class="breadcrumb-item active">Single Question</li>
                             </ol>
                         </div><!-- Container /- -->
                     </div><!-- Page Banner /- -->
@@ -151,38 +151,75 @@
                     <!-- Container -->
                     <div class="container">
                         <!-- Blog Listing -->
-                        <div class="blog-listing">
+                        <div class="blog-single">
                             <!-- Row -->
-                            <div class="row no-gutters">
+                            <div class="row">
                                 <!-- Content Area -->
-                                <div class="col-12 content-area">
-                                    <div class="row questionbox">
-                                        <div class="col-xl-6">
-                                            <div class="blog-box">
-                                                <div class="post-content">
-                                                    <form action="/submitquestion" method="POST">
-                                                        <div class="post-meta">
-                                                            <span class="post-date"><a><button type="submit"
-                                                                                               class="questionbtn">提交</button></a></span>
-                                                            <span class="post-comments"><a><button type="reset"
-                                                                                                   class="questionbtn">取消</button></a></span>
-                                                            <label id="errorlabel" style="color:#1e38ae"></label>
-                                                        </div>
-                                                        <input type="hidden" name="loginUserName" value=""
-                                                               class="hiddenInput"/>
-                                                        <p><input type="text" placeholder="Question Title..."
-                                                                  name="questionTitle" required="required"/></p>
-                                                        <p><input type="text" name="questionContent"
-                                                                  placeholder="Question Content...."
-                                                                  style="margin-top: 10px;width: 90%;height:100px;"
-                                                                  required="required"/></p>
-                                                    </form>
-                                                </div>
+                                <div class="col-md-8 content-area">
+                                    <div class="blog-box">
+                                        <div class="post-content">
+                                            <h3 class="post-title" th:text="${questionTitle}"></h3>
+                                            <p th:text="${questionContent}"></p>
+                                            <div class="post-meta">
+                                                <span class="post-date"><a th:text="${questionerNickName}"></a></span>
+                                                <span class="post-date"><a
+                                                        th:text="${questionPutTime}"></a></span>
+                                                <span class="post-comments"><a
+                                                        th:text="${answerNum}"></a></span>
                                             </div>
                                         </div>
-
                                     </div>
+                                    <!-- Comment Area -->
+                                    <div class="comments-area">
+                                        <!-- Comment Form -->
+                                        <div class="comment-respond">
+                                            <h2 class="comment-reply-title">Leave an Answer:</h2>
+                                            <form method="post" class="comment-form" action="/submitanswer">
+                                                <input type="hidden" name="loginUserName" value=""
+                                                       class="hiddenInput"/>
+                                                <input type="hidden" name="questionId" value=""
+                                                        class="hiddenQuestionId"/>
+                                                <p class="comment-form-comment">
+                                                    <textarea placeholder="Comment" rows="6"
+                                                              required="required" name="answerContent"></textarea>
+                                                </p>
+                                                <p class="form-submit">
+                                                    <input name="submit" class="submit" value="Submit" type="submit"/>
+                                                </p>
+                                            </form>
+                                            <div class="allanswerbox">
+
+                                            </div>
+                                            <div class="row single-gallery" style="margin-top: 50px">
+                                                <div class="col-3">
+                                                    <a href="assets/images/sinlge-gallery-1.jpg"><img
+                                                            src="assets/images/sinlge-gallery-1.jpg" alt="Gallery"/></a>
+                                                </div>
+                                                <div class="col-3">
+                                                    <a href="assets/images/sinlge-gallery-1.jpg"><img
+                                                            src="assets/images/sinlge-gallery-2.jpg" alt="Gallery"/></a>
+                                                </div>
+                                                <div class="col-3">
+                                                    <a href="assets/images/sinlge-gallery-1.jpg"><img
+                                                            src="assets/images/sinlge-gallery-3.jpg" alt="Gallery"/></a>
+                                                </div>
+                                                <div class="col-3">
+                                                    <a href="assets/images/sinlge-gallery-1.jpg"><img
+                                                            src="assets/images/sinlge-gallery-4.jpg" alt="Gallery"/></a>
+                                                </div>
+                                            </div>
+                                        </div><!-- Comment Form /- -->
+                                    </div><!-- Comment Area /- -->
                                 </div><!-- Content Area /- -->
+                                <div class="col-md-4 widget-area">
+                                    <!-- Widget: Categories -->
+                                    <aside id="categories" class="widget widget_categories">
+                                        <h3 class="widget-title">Latest questions</h3>
+                                        <ul class="latestquestionbox">
+                                        </ul>
+                                    </aside><!-- Widget: Categories /- -->
+
+                                </div>
                             </div><!-- Row /- -->
                         </div><!-- Blog Listing /- -->
                     </div><!-- Container /- -->
@@ -193,11 +230,11 @@
                             <!-- Container -->
                             <div class="container">
                                 <div class="ftr-content">
-                                    <p><i class="fa fa-copyright"></i>&nbsp;Air Conditioning Services 2018. All Rights
-                                        Reserved&nbsp;&nbsp;
+                                    <p><i class="fa fa-copyright"></i>&nbsp;Regex Keyboard 2018. All Rights Reserved&nbsp;&nbsp;
                                         &nbsp;&nbsp;<a style="color: #ffffff" href="https://eugenhahaha.me"><i
                                                 class="fab fa-grav"></i>&nbsp;Eugen&nbsp;&nbsp;</a>
-                                        &nbsp;&nbsp;<a style="color: #ffffff" href="mailto:longhe1996@foxmail.com"><i
+                                        &nbsp;&nbsp;<a style="color: #ffffff"
+                                                       href="mailto:longhe1996@foxmail.com"><i
                                                 class="fa fa-envelope"></i>&nbsp;email&nbsp;&nbsp;</a>
                                         &nbsp;&nbsp;<a style="color: #ffffff"
                                                        href="https://github.com/LongHe1996/RegexKeyboard"><i
@@ -234,33 +271,47 @@
         var font = "\"fa fa-heart\"";
         var url3 = "\"collection.html\"";
         if (name != null) {
-            // Login box
             $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
-            $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>");
-            // submit question box
+            $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>")
             $(".hiddenInput").val(name);
-            $(":submit").attr("disabled", false);
-            $(":reset").attr("disabled", false);
-            // Menu box
-            $(".myanswerlogin").attr("href", "myquestion");
-            $(".myquestionlogin").text("My Question");
-            $(".myanswerlogin").attr("href", "myanswer");
-            $(".myanswerlogin").text("My Answer");
+            $(".hiddenQuestionId").val(window.location.search.substr(4));
         } else {
-            // Login box
             $(".loginname").append("<a href=" + url2 + ">尚未登录</a>");
-            //Menu box
-            $(".myquestionlogin").text("My Queztion- No Login");
-            $(".myquestionlogin").attr("href", "/");
-            $(".myanswerlogin").text("My Answer - No Login");
-            $(".myanswerlogin").attr("href", "/");
-            // submit question box
-            $("#errorlabel").append("<a href=" + url2 + ">尚未登录</a>");
-            $(".hiddenInput").val();
-            $(":submit").attr("disabled", true);
-            $(":reset").attr("disabled", true);
         }
     })
+
+    $.ajax({
+        type: "GET",
+        url: "allAnswerToAQuestion?id=" + window.location.search.substr(4),
+        dataType: "json",
+        success: function (data) {
+            if (data) {
+                var answerbox = "\"answerbox\"";
+                var acceptbtn = "\"acceptbtn\"";
+                var acceptbox = "\"acceptbox\""
+                var acceptbtnhidden = "\"visibility: hidden;margin-right: 10px\"";
+                var brush = "\"fa fa-paint-brush\"";
+                var check = "\"fa fa-check\"";
+                var truestr = "\"true\"";
+                var brushcolor = "\"color: #1e38ae\"";
+                var checkcolor = "\"color:green;\"";
+                $.each(data["allAnswers"], function (i, item) {
+                    var str = "<div class=" + answerbox + ">"
+                        + "<label>" + item.nickName + "</label><label>" + item.putTime + "</label>"
+                        + "<button class=" + acceptbtn + ">";
+                    if (item.accepted) {
+                        str = str + "<label style=" + acceptbtnhidden + "></label>"
+                            + "<i class = " + check + " aria-hidden= " + truestr + " style = " + checkcolor + "></i>";
+                    } else {
+                        str = str + "<label class=" + acceptbox + " style=" + acceptbtnhidden + ">采纳?</label>"
+                            + "<i class= " + brush + " aria-hidden= " + truestr + " style = " + brushcolor + "></i>";
+                    }
+                    str = str + "</button><p>" + item.answerContent + "</p></div>";
+                    $(".allanswerbox").append(str);
+                })
+            }
+        }
+    });
 
     $.ajax({
         type: "GET",
@@ -268,41 +319,25 @@
         dataType: "json",
         success: function (data) {
             if (data) {
-                var colx16 = "\"col-xl-6\"";
-                var blogbox = "\"blog-box\"";
-                var postcontent = "\"post-content\"";
-                var postmeta = "\"post-meta\"";
-                var posttitle = "\"post-title\"";
-                var postdate = "\"post-date\"";
-                var postcomments = "\"post-comments\"";
-                var fontnotok = "\"fa fa-braille\"";
-                var fontok = "\"fa fa-check\"";
-                var turestr = "true";
+                var catitem = "\"cat-item\"";
                 $.each(data["allQuestion"], function (i, item) {
-                    var singlequestion = "\"getsinglequestion?id="+item.id+"\"";
-                    var str = "<div class=" + colx16 + ">"
-                        + "<div class=" + blogbox + ">"
-                        + "<div class=" + postcontent + ">"
-                        + "<div class=" + postmeta + ">"
-                        + "<span class=" + postdate + "><a >" + item.putTime + "</a></span>"
-                        + "<span class=" + postcomments + "><a >" + item.answerNum + "comments </a></span>";
-                    if (item.solved) {
-                        str = str + " <i class=" + fontok + " aria-hidden=" + turestr + "></i>";
-                    } else {
-                        str = str + " <i class=" + fontnotok + " aria-hidden=" + turestr + "></i>";
-                    }
-                    str = str + "</div>"
-                        + "<h3 class=" + posttitle + "><a href=" + singlequestion + ">" + item.questionTitle + "</a></h3>"
-                        + "<p>" + item.questionContent + "</p>"
-                        + "</div>"
-                        + "</div>"
-                        + "</div>";
+                    var singlequestion = "\"getsinglequestion?id=" + item.id + "\"";
+                    var str = "<li class=" + catitem + "><a href=" + singlequestion + ">" + item.questionTitle.substr(0, 8) + "…</a>(" + item.answerNum + ")</li>";
+                    $(".latestquestionbox").append(str);
 
-                    $(".questionbox").append(str);
                 })
             }
         }
     });
+
+
+    $(".acceptbtn").mouseover(function () {
+        $(this).children(".acceptbox").css("visibility", "");
+    });
+    $(".acceptbtn").mouseout(function () {
+        $(this).children(".acceptbox").css("visibility", "hidden");
+    });
 </script>
+
 </body>
 </html>

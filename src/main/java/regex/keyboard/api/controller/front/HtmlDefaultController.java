@@ -18,6 +18,10 @@ public class HtmlDefaultController {
     public String getIndexDefault(){
         return "/index";
     }
+    @GetMapping("/index")
+    public String getIndex(){
+        return "/index";
+    }
     @GetMapping("home")
     public String getHomeDefault(){
         return "/home";
@@ -36,6 +40,7 @@ public class HtmlDefaultController {
     }
     @GetMapping("qanda")
     public String getQAndADefault(){
+
         return "/qanda";
     }
     @GetMapping("test")
@@ -54,10 +59,10 @@ public class HtmlDefaultController {
     public String getMyQuestionDefault(){
         return "/myquestion";
     }
-    @GetMapping("singlequestion")
-    public String getSingleQuestionDefault(){
-        return "/single-question";
-    }
+//    @GetMapping("singlequestion")
+//    public String getSingleQuestionDefault(){
+//        return "/singlequestion";
+//    }
     @GetMapping("signup")
     public String getSignUpDefault(){
         return "/signup";

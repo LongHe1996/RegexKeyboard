@@ -29,7 +29,7 @@ public class UserFController {
         return "/home";
     }
     @RequestMapping("/dosignup")
-    public String login(UserE userE,String drowssap2, HashMap<String, Object> map){
+    public String signup(UserE userE,String drowssap2, HashMap<String, Object> map){
         if(userE.getDrowssap()!=drowssap2){
             map.put("error","两次密码输入不一致！");
             return "/signup";
@@ -42,4 +42,5 @@ public class UserFController {
         }
         return "/index";
     }
+
 }

@@ -11,11 +11,13 @@ import regex.keyboard.domain.regexKeyboard.entity.QuestionE;
 public interface QuestionService {
     QuestionDTO create(QuestionE questionE);
 
-    String deleteById(Long id);
+    QuestionDTO deleteById(Long id);
 
     QuestionDTO updateIfSolved(QuestionE questionE, Long acceptAnswer);
 
     QuestionDTO selectById(Long id);
 
     List<QuestionDTO> selectByQuestioner(Long quesrioner);
+
+    List<QuestionDTO> selectAllSort();
 }

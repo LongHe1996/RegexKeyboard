@@ -23,7 +23,7 @@ public class AnswerServiceImpl implements AnswerService {
     public AnswerDTO create(AnswerE answerE) {
         AnswerDO answerDO = answerConvertor.entityToDo(answerE);
         AnswerDO saveAnswerDO = answerRepository.save(answerDO);
-        return new AnswerDTO(answerConvertor.doToEntity(saveAnswerDO), "success.create.answer:" + saveAnswerDO.getAnswerContent());
+        return new AnswerDTO(answerConvertor.doToEntity(saveAnswerDO), "success.create.answer:" + saveAnswerDO.getAnswerContent(),true);
     }
 
     @Override
@@ -41,11 +41,11 @@ public class AnswerServiceImpl implements AnswerService {
         AnswerDO answerDO = answerConvertor.entityToDo(answerE);
         //1.answer不存在
         if (answerRepository.findOne(answerDO.getId()) == null) {
-            return new AnswerDTO(null, "error.update.answer.accept.not.exist." + answerDO.getId());
+            return new AnswerDTO(null, "error.update.answer.accept.not.exist." + answerDO.getId(),false);
         }
         answerDO.setAccepted(true);
         AnswerDO updateAnswerDO = answerRepository.save(answerDO);
-        return new AnswerDTO(answerConvertor.doToEntity(updateAnswerDO), "success.update.answer.accept:" + updateAnswerDO);
+        return new AnswerDTO(answerConvertor.doToEntity(updateAnswerDO), "success.update.answer.accept:" + updateAnswerDO,true);
     }
 
     @Override
@@ -53,13 +53,13 @@ public class AnswerServiceImpl implements AnswerService {
         List<AnswerDTO> selectByRespondent = new ArrayList<>();
         List<AnswerDO> byRespondent = answerRepository.findByRespondent(respondent);
         if (byRespondent.isEmpty()) {
-            selectByRespondent.add(new AnswerDTO(null, "error.select.answer.by.respondent.not.exist:" + respondent));
+            selectByRespondent.add(new AnswerDTO(null, "error.select.answer.by.respondent.not.exist:" + respondent,false));
             return selectByRespondent;
         }
         for (AnswerDO answerDO : byRespondent
                 ) {
             AnswerE answerE = answerConvertor.doToEntity(answerDO);
-            selectByRespondent.add(new AnswerDTO(answerE, "success.select.answer.by.respondent:" + respondent));
+            selectByRespondent.add(new AnswerDTO(answerE, "success.select.answer.by.respondent:" + respondent,true));
         }
         return selectByRespondent;
     }
@@ -69,13 +69,13 @@ public class AnswerServiceImpl implements AnswerService {
         List<AnswerDTO> selectByQuestionId = new ArrayList<>();
         List<AnswerDO> byQuestionId = answerRepository.findByQuestionId(questionId);
         if (byQuestionId.isEmpty()) {
-            selectByQuestionId.add(new AnswerDTO(null, "error.select.answer.by.question.id.not.exist:" + questionId));
+            selectByQuestionId.add(new AnswerDTO(null, "error.select.answer.by.question.id.not.exist:" + questionId,false));
             return selectByQuestionId;
         }
         for (AnswerDO answerDO : byQuestionId
                 ) {
             AnswerE answerE = answerConvertor.doToEntity(answerDO);
-            selectByQuestionId.add(new AnswerDTO(answerE, "success.select.answer.by.question.id.:" + questionId));
+            selectByQuestionId.add(new AnswerDTO(answerE, "success.select.answer.by.question.id.:" + questionId,true));
         }
         return selectByQuestionId;
     }
