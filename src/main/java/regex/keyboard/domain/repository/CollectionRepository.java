@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import regex.keyboard.infra.dataobject.CollectionDO;
 
 @Repository
-public interface CollectionRepository extends JpaRepository<CollectionDO,Long> {
+public interface CollectionRepository extends JpaRepository<CollectionDO, Long> {
     List<CollectionDO> findByQuestionId(Long questionId);
+
     List<CollectionDO> findByCollector(Long collector);
 }

@@ -28,8 +28,8 @@ public class UserDO {
     public UserDO() {
     }
 
-    public UserDO(Long id,String userName, String nickName, String email, String drowssap, String bio, Date registerTime) {
-        this.id=id;
+    public UserDO(Long id, String userName, String nickName, String email, String drowssap, String bio, Date registerTime) {
+        this.id = id;
         this.userName = userName;
         this.nickName = nickName;
         this.email = email;

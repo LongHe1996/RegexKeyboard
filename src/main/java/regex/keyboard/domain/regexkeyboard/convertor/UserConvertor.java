@@ -1,7 +1,7 @@
-package regex.keyboard.domain.regexKeyboard.convertor;
+package regex.keyboard.domain.regexkeyboard.convertor;
 
 import org.springframework.stereotype.Component;
-import regex.keyboard.domain.regexKeyboard.entity.UserE;
+import regex.keyboard.domain.regexkeyboard.entity.UserE;
 import regex.keyboard.infra.dataobject.UserDO;
 
 /**
@@ -20,6 +20,6 @@ public class UserConvertor implements ConvertorI<UserDO, UserE> {
 
     @Override
     public UserDO entityToDo(UserE entity) {
-        return new UserDO(entity.getId(),entity.getUserName(),entity.getNickName(),entity.getEmail(),entity.getDrowssap(),entity.getBio(),entity.getRegisterTime());
+        return new UserDO(entity.getId(), entity.getUserName(), entity.getNickName(), entity.getEmail(), entity.getDrowssap(), entity.getBio(), entity.getRegisterTime());
     }
 }

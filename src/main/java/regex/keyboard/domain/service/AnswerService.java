@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import regex.keyboard.api.dto.AnswerDTO;
-import regex.keyboard.domain.regexKeyboard.entity.AnswerE;
+import regex.keyboard.domain.regexkeyboard.entity.AnswerE;
 
 @Service
 public interface AnswerService {

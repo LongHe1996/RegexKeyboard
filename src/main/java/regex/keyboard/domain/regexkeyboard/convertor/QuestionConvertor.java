@@ -1,4 +1,4 @@
-package regex.keyboard.domain.regexKeyboard.convertor;
+package regex.keyboard.domain.regexkeyboard.convertor;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import regex.keyboard.api.dto.OneForAllQuestionDTO;
 import regex.keyboard.api.dto.QuestionDTO;
-import regex.keyboard.domain.regexKeyboard.entity.AnswerE;
-import regex.keyboard.domain.regexKeyboard.entity.QuestionE;
-import regex.keyboard.domain.regexKeyboard.entity.UserE;
+import regex.keyboard.domain.regexkeyboard.entity.AnswerE;
+import regex.keyboard.domain.regexkeyboard.entity.QuestionE;
+import regex.keyboard.domain.regexkeyboard.entity.UserE;
 import regex.keyboard.domain.repository.AnswerRepository;
 import regex.keyboard.domain.repository.UserRepository;
 import regex.keyboard.infra.dataobject.AnswerDO;

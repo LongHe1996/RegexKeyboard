@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import regex.keyboard.infra.dataobject.RegexRulesDO;
 
 @Repository
-public interface RegexRulesRepository  extends JpaRepository<RegexRulesDO, Long> {
+public interface RegexRulesRepository extends JpaRepository<RegexRulesDO, Long> {
 }

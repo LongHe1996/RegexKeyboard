@@ -1,4 +1,4 @@
-package regex.keyboard.domain.regexKeyboard.entity;
+package regex.keyboard.domain.regexkeyboard.entity;
 
 /**
  * @Description: entity, strategy.
@@ -10,14 +10,16 @@ public class StrategyE {
     private Long id;
     private String strategyRegex;
     private String strategyUse;
+    private Long strategyType;
 
     public StrategyE() {
     }
 
-    public StrategyE(Long id, String strategyRegex, String strategyUse) {
+    public StrategyE(Long id, String strategyRegex, String strategyUse, Long strategyType) {
         this.id = id;
         this.strategyRegex = strategyRegex;
         this.strategyUse = strategyUse;
+        this.strategyType = strategyType;
     }
 
     public Long getId() {
@@ -44,12 +46,21 @@ public class StrategyE {
         this.strategyUse = strategyUse;
     }
 
+    public Long getStrategyType() {
+        return strategyType;
+    }
+
+    public void setStrategyType(Long strategyType) {
+        this.strategyType = strategyType;
+    }
+
     @Override
     public String toString() {
         return "StrategyE{" +
                 "id=" + id +
                 ", strategyRegex='" + strategyRegex + '\'' +
                 ", strategyUse='" + strategyUse + '\'' +
+                ", strategyType=" + strategyType +
                 '}';
     }
 }

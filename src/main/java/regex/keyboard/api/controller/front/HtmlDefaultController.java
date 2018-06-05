@@ -1,6 +1,6 @@
 package regex.keyboard.api.controller.front;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,68 +8,75 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @Description:
- * @Author:    Eugen
- * @Mail:    longhe1996@foxmail.com
- * @CreateDate:     2018/5/29 17:24
-*/
+ * @Author: Eugen
+ * @Mail: longhe1996@foxmail.com
+ * @CreateDate: 2018/5/29 17:24
+ */
 @Controller
 public class HtmlDefaultController {
     @GetMapping("/")
-    public String getIndexDefault(){
+    public String getIndexDefault() {
         return "/index";
     }
+
     @GetMapping("/index")
-    public String getIndex(){
+    public String getIndex() {
         return "/index";
     }
+
     @GetMapping("home")
-    public String getHomeDefault(){
+    public String getHomeDefault() {
         return "/home";
     }
+
     @GetMapping("readme")
-    public String getReadMeDefault(){
+    public String getReadMeDefault() {
         return "/readme";
     }
+
     @GetMapping("learnmore")
-    public String getLearnMoreDefault(){
+    public String getLearnMoreDefault() {
         return "/learnmore";
     }
+
     @GetMapping("keyboard")
-    public String getKeyboardDefault(){
+    public String getKeyboardDefault() {
         return "/keyboard";
     }
+
     @GetMapping("qanda")
-    public String getQAndADefault(){
+    public String getQAndADefault() {
 
         return "/qanda";
     }
+
     @GetMapping("test")
-    public String getTestDefault(){
+    public String getTestDefault() {
         return "/test";
     }
+
     @GetMapping("profile")
-    public String getProfileDefault(){
+    public String getProfileDefault() {
         return "/profile";
     }
+
     @GetMapping("myanswer")
-    public String getMyAnswerDefault(){
+    public String getMyAnswerDefault() {
         return "/myanswer";
     }
+
     @GetMapping("myquestion")
-    public String getMyQuestionDefault(){
+    public String getMyQuestionDefault() {
         return "/myquestion";
     }
-//    @GetMapping("singlequestion")
-//    public String getSingleQuestionDefault(){
-//        return "/singlequestion";
-//    }
+
     @GetMapping("signup")
-    public String getSignUpDefault(){
+    public String getSignUpDefault() {
         return "/signup";
     }
 
     @RequestMapping("/hello")
-    public String helloHtml(HashMap<String, Object> map) {
+    public String helloHtml(Map<String, Object> map) {
         map.put("hello", "欢迎进入HTML页面");
         return "/demo1";
     }

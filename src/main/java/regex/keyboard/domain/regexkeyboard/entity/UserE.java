@@ -1,4 +1,4 @@
-package regex.keyboard.domain.regexKeyboard.entity;
+package regex.keyboard.domain.regexkeyboard.entity;
 
 import java.util.Date;
 

@@ -6,10 +6,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import regex.keyboard.api.dto.*;
+import regex.keyboard.api.dto.AnswerDTO;
+import regex.keyboard.api.dto.OneForAllAnswersDTO;
+import regex.keyboard.api.dto.QuestionDTO;
+import regex.keyboard.api.dto.UserDTO;
 import regex.keyboard.app.service.AnswerServiceV;
-import regex.keyboard.domain.regexKeyboard.convertor.AnswerConvertor;
-import regex.keyboard.domain.regexKeyboard.entity.AnswerE;
+import regex.keyboard.domain.regexkeyboard.convertor.AnswerConvertor;
+import regex.keyboard.domain.regexkeyboard.entity.AnswerE;
 import regex.keyboard.domain.service.AnswerService;
 import regex.keyboard.domain.service.QuestionService;
 import regex.keyboard.domain.service.UserService;
@@ -24,19 +27,20 @@ public class AnswerServiceVImpl implements AnswerServiceV {
     private UserService userService;
     @Autowired
     private QuestionService questionService;
+
     @Override
     public List<OneForAllAnswersDTO> getAllTheAnswersToAQuestion(Long questionId) {
-        List<OneForAllAnswersDTO> oneForAllAnswersDTOS=new ArrayList<>();
+        List<OneForAllAnswersDTO> oneForAllAnswersDTOS = new ArrayList<>();
         List<AnswerDTO> answerDTOS = answerService.selectByQuestionId(questionId);
-        for (AnswerDTO answerDTO:answerDTOS
-             ) {
-            oneForAllAnswersDTOS.add(answerConvertor.DtoToForView(answerDTO));
+        for (AnswerDTO answerDTO : answerDTOS
+                ) {
+            oneForAllAnswersDTOS.add(answerConvertor.dtoToForView(answerDTO));
         }
         return oneForAllAnswersDTOS;
     }
 
     @Override
-    public AnswerDTO submitAnswer(AnswerE answerE, String loginUserName,Long questionId) {
+    public AnswerDTO submitAnswer(AnswerE answerE, String loginUserName, Long questionId) {
         UserDTO userDTO = userService.selectByUserName(loginUserName);
         QuestionDTO questionDTO = questionService.selectById(questionId);
         answerE.setRespondent(userDTO.getUserE());
@@ -44,7 +48,7 @@ public class AnswerServiceVImpl implements AnswerServiceV {
         answerE.setAccepted(false);
         answerE.setPutTime(new Date());
         AnswerDTO answerDTO = answerService.create(answerE);
-        if(answerDTO.getSuccess()){
+        if (answerDTO.getSuccess()) {
             answerDTO.setMessage("提交成功");
         }
         return answerDTO;

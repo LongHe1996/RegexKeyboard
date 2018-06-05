@@ -1,10 +1,11 @@
-package regex.keyboard.domain.regexKeyboard.entity;
+package regex.keyboard.domain.regexkeyboard.entity;
+
 /**
- * @Description:   entity,regexrulesnature.
- * @Author:    Eugen
- * @Mail:    longhe1996@foxmail.com
- * @CreateDate:     2018/5/29 23:11
-*/
+ * @Description: entity, regexrulesnature.
+ * @Author: Eugen
+ * @Mail: longhe1996@foxmail.com
+ * @CreateDate: 2018/5/29 23:11
+ */
 public class RegexRulesNatureE {
     private Long id;
     private String nature;

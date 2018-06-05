@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import regex.keyboard.api.dto.AnswerDTO;
 import regex.keyboard.api.dto.OneForAllAnswersDTO;
 import regex.keyboard.app.service.AnswerServiceV;
-import regex.keyboard.domain.regexKeyboard.entity.AnswerE;
+import regex.keyboard.domain.regexkeyboard.entity.AnswerE;
 
 @RestController
 public class AnswerBController {
@@ -19,6 +19,6 @@ public class AnswerBController {
     }
 
     public AnswerDTO submitAnswer(AnswerE answerE, String loginUserName, Long questionId) {
-        return answerServiceV.submitAnswer(answerE, loginUserName,questionId);
+        return answerServiceV.submitAnswer(answerE, loginUserName, questionId);
     }
 }

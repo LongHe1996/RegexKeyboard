@@ -22,8 +22,8 @@ public class RegexDO {
     public RegexDO() {
     }
 
-    public RegexDO(Long id,String regexContent, String regexDescribe) {
-        this.id=id;
+    public RegexDO(Long id, String regexContent, String regexDescribe) {
+        this.id = id;
         this.regexContent = regexContent;
         this.regexDescribe = regexDescribe;
     }

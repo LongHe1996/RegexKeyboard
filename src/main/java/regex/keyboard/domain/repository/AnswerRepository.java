@@ -9,5 +9,6 @@ import regex.keyboard.infra.dataobject.AnswerDO;
 @Repository
 public interface AnswerRepository extends JpaRepository<AnswerDO, Long> {
     List<AnswerDO> findByRespondent(Long respondent);
+
     List<AnswerDO> findByQuestionId(Long questionId);
 }

@@ -1,13 +1,14 @@
-package regex.keyboard.domain.regexKeyboard.entity;
+package regex.keyboard.domain.regexkeyboard.entity;
 
 
 import java.util.Date;
+
 /**
- * @Description:    entity,collection.
- * @Author:    Eugen
- * @Mail:    longhe1996@foxmail.com
- * @CreateDate:     2018/5/29 23:10
-*/
+ * @Description: entity, collection.
+ * @Author: Eugen
+ * @Mail: longhe1996@foxmail.com
+ * @CreateDate: 2018/5/29 23:10
+ */
 public class CollectionE {
     private Long id;
     private QuestionE question;

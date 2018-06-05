@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8"/>
     <title>Regex-Keyboard</title>
@@ -127,9 +127,11 @@
         .skew-title span.flat:nth-child(even):after {
             background-color: #1a3094;
         }
-        .skew-title span.alt{
+
+        .skew-title span.alt {
             color: #1a3094;
         }
+
         .skew-title span.alt:after {
             background-color: #fff;
         }
@@ -141,7 +143,8 @@
         .skew-title span.alt.flat:nth-child(even):after {
             background-color: #fff;
         }
-        .loginbtn{
+
+        .loginbtn {
             background: center;
             color: #fff;
             border: 2px solid #fff;
@@ -161,12 +164,14 @@
     </h1>
     <p class="row row--intro" onclick="location='/home'"> >>>> Into the world of regular expressions
         >>>> </p>
-    <form action="/dosignup" method="POST" style="text-align: center"  >
-        <input type="text" placeholder="Login Name" name="userName"  style="width: 120px"  required="required" />
-        <input type="text" placeholder="Nick Name" name="nickName" style="width: 120px"  required="required" />
-        <input type="email" placeholder="Email" name="email" id="email" style="width: 120px"  required="required" />
-        <input type="password" placeholder="Password" name="drowssap" id="pwd1" style="width: 120px"  required="required"/>
-        <input type="password" placeholder="Password again" name="drowssap2" id="pwd2" style="width: 120px"  required="required"/>
+    <form action="/dosignup" method="POST" style="text-align: center">
+        <input type="text" placeholder="Login Name" name="userName" style="width: 120px" required="required"/>
+        <input type="text" placeholder="Nick Name" name="nickName" style="width: 120px" required="required"/>
+        <input type="email" placeholder="Email" name="email" id="email" style="width: 120px" required="required"/>
+        <input type="password" placeholder="Password" name="drowssap" id="pwd1" style="width: 120px"
+               required="required"/>
+        <input type="password" placeholder="Password again" name="drowssap2" id="pwd2" style="width: 120px"
+               required="required"/>
         <button type="submit" class="loginbtn">Sign Up</button>
         <label id="errorlabel" style="color:#fff" th:text="${error}"></label>
     </form>

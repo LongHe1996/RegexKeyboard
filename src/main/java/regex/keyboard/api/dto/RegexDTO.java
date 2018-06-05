@@ -1,6 +1,6 @@
 package regex.keyboard.api.dto;
 
-import regex.keyboard.domain.regexKeyboard.entity.RegexE;
+import regex.keyboard.domain.regexkeyboard.entity.RegexE;
 
 public class RegexDTO {
     private RegexE regexE;

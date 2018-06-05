@@ -1,9 +1,6 @@
 package regex.keyboard.api.dto;
 
-import java.util.Date;
-
-import regex.keyboard.domain.regexKeyboard.entity.AnswerE;
-import regex.keyboard.domain.regexKeyboard.entity.UserE;
+import regex.keyboard.domain.regexkeyboard.entity.UserE;
 
 public class OneForAllQuestionDTO {
     private Long id;

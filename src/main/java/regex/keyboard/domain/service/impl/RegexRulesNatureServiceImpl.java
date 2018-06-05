@@ -6,11 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import regex.keyboard.api.dto.RegexRulesNatureDTO;
-import regex.keyboard.domain.regexKeyboard.convertor.RegexRulesNatureConvetor;
-import regex.keyboard.domain.regexKeyboard.entity.RegexRulesNatureE;
+import regex.keyboard.domain.regexkeyboard.convertor.RegexRulesNatureConvetor;
+import regex.keyboard.domain.regexkeyboard.entity.RegexRulesNatureE;
 import regex.keyboard.domain.repository.RegexRulesNatureRepository;
 import regex.keyboard.domain.service.RegexRulesNatureService;
 import regex.keyboard.infra.dataobject.RegexRulesNatureDO;
+
 @Service
 public class RegexRulesNatureServiceImpl implements RegexRulesNatureService {
     @Autowired

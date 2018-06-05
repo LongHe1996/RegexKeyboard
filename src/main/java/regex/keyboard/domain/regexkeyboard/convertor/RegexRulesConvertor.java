@@ -1,7 +1,7 @@
-package regex.keyboard.domain.regexKeyboard.convertor;
+package regex.keyboard.domain.regexkeyboard.convertor;
 
 import org.springframework.stereotype.Component;
-import regex.keyboard.domain.regexKeyboard.entity.RegexRulesE;
+import regex.keyboard.domain.regexkeyboard.entity.RegexRulesE;
 import regex.keyboard.infra.dataobject.RegexRulesDO;
 
 /**
@@ -19,6 +19,6 @@ public class RegexRulesConvertor implements ConvertorI<RegexRulesDO, RegexRulesE
 
     @Override
     public RegexRulesDO entityToDo(RegexRulesE entity) {
-        return new RegexRulesDO(entity.getId(),entity.getRuleContent(), entity.getRuleDescribe(), entity.getRuleNature());
+        return new RegexRulesDO(entity.getId(), entity.getRuleContent(), entity.getRuleDescribe(), entity.getRuleNature());
     }
 }

@@ -28,8 +28,8 @@ public class QuestionDO {
     public QuestionDO() {
     }
 
-    public QuestionDO(Long id,String questionTitle, String questionContent, Long questioner, Date putTime, Boolean isSolved, Long acceptAnswer) {
-        this.id=id;
+    public QuestionDO(Long id, String questionTitle, String questionContent, Long questioner, Date putTime, Boolean isSolved, Long acceptAnswer) {
+        this.id = id;
         this.questionTitle = questionTitle;
         this.questionContent = questionContent;
         this.questioner = questioner;

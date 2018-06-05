@@ -24,8 +24,8 @@ public class RegexRulesDO {
     public RegexRulesDO() {
     }
 
-    public RegexRulesDO(Long id,String ruleContent, String ruleDescribe, Long ruleNature) {
-        this.id=id;
+    public RegexRulesDO(Long id, String ruleContent, String ruleDescribe, Long ruleNature) {
+        this.id = id;
         this.ruleContent = ruleContent;
         this.ruleDescribe = ruleDescribe;
         this.ruleNature = ruleNature;

@@ -1,22 +1,20 @@
 package regex.keyboard.api.controller.front;
 
-import static org.springframework.data.repository.init.ResourceReader.Type.JSON;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import regex.keyboard.api.controller.back.AnswerBController;
 import regex.keyboard.api.controller.back.QuestionBController;
-import regex.keyboard.api.dto.*;
-import regex.keyboard.domain.regexKeyboard.entity.AnswerE;
-import regex.keyboard.domain.regexKeyboard.entity.QuestionE;
-import regex.keyboard.domain.regexKeyboard.entity.UserE;
+import regex.keyboard.api.dto.OneForAllAnswersDTO;
+import regex.keyboard.api.dto.OneForAllQuestionDTO;
+import regex.keyboard.domain.regexkeyboard.entity.AnswerE;
+import regex.keyboard.domain.regexkeyboard.entity.QuestionE;
 
 @Controller
 public class QuestionFController {
@@ -24,58 +22,56 @@ public class QuestionFController {
     private QuestionBController questionBController;
     @Autowired
     private AnswerBController answerBController;
+
     @GetMapping("getAllQuestions")
     @ResponseBody
-    public String getAllQuestion(HashMap<String,Object> map){
+    public String getAllQuestion(Map<String, Object> map) {
         List<OneForAllQuestionDTO> allQuestion = questionBController.getAllQuestion();
-        map.put("allQuestion",allQuestion);
+        map.put("allQuestion", allQuestion);
         JSONObject jsonObject = JSONObject.fromObject(map);
-        String result = jsonObject.toString();
-        return result;
+        return jsonObject.toString();
     }
+
     @RequestMapping("/submitquestion")
-    public String login(QuestionE questionE,String loginUserName, HashMap<String, Object> map){
-        if("".equals(loginUserName)){
-            map.put("error","尚未登录");
+    public String login(QuestionE questionE, String loginUserName, Map<String, Object> map) {
+        if ("".equals(loginUserName)) {
+            map.put("error", "尚未登录");
             return "/qanda";
         }
-        QuestionDTO questionDTO = questionBController.submitQuestion(questionE, loginUserName);
-        System.out.println(questionDTO.getMessage());
+        questionBController.submitQuestion(questionE, loginUserName);
         return "/qanda";
     }
 
     @GetMapping("getsinglequestion")
-    public String getSingleQuestionDefault(Long id,HashMap<String,Object> map){
+    public String getSingleQuestionDefault(Long id, Map<String, Object> map) {
         OneForAllQuestionDTO oneQuestion = questionBController.getOneQuestion(id);
-        map.put("questionerNickName",oneQuestion.getQuestioner().getNickName());
-        map.put("questionerId",oneQuestion.getQuestioner().getId());
-        map.put("questionTitle",oneQuestion.getQuestionTitle());
-        map.put("questionContent",oneQuestion.getQuestionContent());
-        map.put("questionPutTime",oneQuestion.getPutTime());
-        map.put("answerNum",oneQuestion.getAnswerNum()+" comments");
-        map.put("isSolved",oneQuestion.getSolved());
+        map.put("questionerNickName", oneQuestion.getQuestioner().getNickName());
+        map.put("questionerId", oneQuestion.getQuestioner().getId());
+        map.put("questionTitle", oneQuestion.getQuestionTitle());
+        map.put("questionContent", oneQuestion.getQuestionContent());
+        map.put("questionPutTime", oneQuestion.getPutTime());
+        map.put("answerNum", oneQuestion.getAnswerNum() + " comments");
+        map.put("isSolved", oneQuestion.getSolved());
         return "/singlequestion";
     }
+
     @GetMapping("allAnswerToAQuestion")
     @ResponseBody
-    public String getAllQuestion(Long id,HashMap<String,Object> map){
-        System.out.println(id);
+    public String getAllQuestion(Long id, Map<String, Object> map) {
         List<OneForAllAnswersDTO> allAnswerToAQuestion = answerBController.getAllAnswerToAQuestion(id);
-        map.put("allAnswers",allAnswerToAQuestion);
+        map.put("allAnswers", allAnswerToAQuestion);
         JSONObject jsonObject = JSONObject.fromObject(map);
-        String result = jsonObject.toString();
-        System.out.println(result);
-        return result;
+       return jsonObject.toString();
     }
+
     @RequestMapping("/submitanswer")
-    public String signup(AnswerE answerE,String loginUserName,Long questionId,HashMap<String, Object> map){
-        System.out.println(answerE+"\nquestionId:"+questionId+"\nloginuser："+loginUserName);
-        if("".equals(loginUserName)){
-            map.put("error","尚未登录");
-            return "redirect:getsinglequestion?id="+questionId;
+    public String signup(AnswerE answerE, String loginUserName, Long questionId, Map<String, Object> map) {
+        if ("".equals(loginUserName)) {
+            map.put("error", "尚未登录");
+            return "redirect:getsinglequestion?id=" + questionId;
         }
-        answerBController.submitAnswer(answerE, loginUserName,questionId);
-        return "redirect:getsinglequestion?id="+questionId;
+        answerBController.submitAnswer(answerE, loginUserName, questionId);
+        return "redirect:getsinglequestion?id=" + questionId;
     }
 }
 

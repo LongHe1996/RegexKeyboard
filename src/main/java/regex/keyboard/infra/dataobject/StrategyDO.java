@@ -14,18 +14,21 @@ public class StrategyDO {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String strategyRegex;
     @Column(nullable = false)
     private String strategyUse;
+    @Column(nullable = false)
+    private Long strategyType;
 
     public StrategyDO() {
     }
 
-    public StrategyDO(Long id,String strategyRegex, String strategyUse) {
-        this.id=id;
+    public StrategyDO(Long id, String strategyRegex, String strategyUse, Long strategyType) {
+        this.id = id;
         this.strategyRegex = strategyRegex;
         this.strategyUse = strategyUse;
+        this.strategyType = strategyType;
     }
 
     public Long getId() {
@@ -50,5 +53,13 @@ public class StrategyDO {
 
     public void setStrategyUse(String strategyUse) {
         this.strategyUse = strategyUse;
+    }
+
+    public Long getStrategyType() {
+        return strategyType;
+    }
+
+    public void setStrategyType(Long strategyType) {
+        this.strategyType = strategyType;
     }
 }

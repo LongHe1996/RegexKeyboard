@@ -1,6 +1,6 @@
 package regex.keyboard.api.dto;
 
-import regex.keyboard.domain.regexKeyboard.entity.RegexRulesNatureE;
+import regex.keyboard.domain.regexkeyboard.entity.RegexRulesNatureE;
 
 public class RegexRulesNatureDTO {
     private RegexRulesNatureE regexRulesNatureE;

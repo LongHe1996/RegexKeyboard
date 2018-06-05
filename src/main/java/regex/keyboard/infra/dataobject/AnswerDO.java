@@ -28,8 +28,8 @@ public class AnswerDO {
     public AnswerDO() {
     }
 
-    public AnswerDO(Long id,String answerContent, Long respondent, Long questionId, Date putTime, Boolean isAccepted) {
-        this.id=id;
+    public AnswerDO(Long id, String answerContent, Long respondent, Long questionId, Date putTime, Boolean isAccepted) {
+        this.id = id;
         this.answerContent = answerContent;
         this.respondent = respondent;
         this.questionId = questionId;

@@ -4,11 +4,11 @@ import java.util.Date;
 import javax.persistence.*;
 
 /**
- * @Description:    dataobject the.record collection information
- * @Author:    Eugen
- * @Mail:    longhe1996@foxmail.com
- * @CreateDate:     2018/5/29 22:44
-*/
+ * @Description: dataobject the.record collection information
+ * @Author: Eugen
+ * @Mail: longhe1996@foxmail.com
+ * @CreateDate: 2018/5/29 22:44
+ */
 @Entity
 @Table(name = "collection")
 public class CollectionDO {
@@ -24,8 +24,8 @@ public class CollectionDO {
     public CollectionDO() {
     }
 
-    public CollectionDO(Long id,Long questionId, Long collector, Date collectionTime) {
-        this.id=id;
+    public CollectionDO(Long id, Long questionId, Long collector, Date collectionTime) {
+        this.id = id;
         this.questionId = questionId;
         this.collector = collector;
         this.collectionTime = collectionTime;

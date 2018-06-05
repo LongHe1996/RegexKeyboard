@@ -1,6 +1,6 @@
 package regex.keyboard.api.dto;
 
-import regex.keyboard.domain.regexKeyboard.entity.AnswerE;
+import regex.keyboard.domain.regexkeyboard.entity.AnswerE;
 
 public class AnswerDTO {
     private AnswerE answerE;

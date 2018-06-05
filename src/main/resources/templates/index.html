@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8"/>
     <title>Regex-Keyboard</title>
@@ -127,9 +127,11 @@
         .skew-title span.flat:nth-child(even):after {
             background-color: #1a3094;
         }
-        .skew-title span.alt{
+
+        .skew-title span.alt {
             color: #1a3094;
         }
+
         .skew-title span.alt:after {
             background-color: #fff;
         }
@@ -141,7 +143,8 @@
         .skew-title span.alt.flat:nth-child(even):after {
             background-color: #fff;
         }
-        .loginbtn{
+
+        .loginbtn {
             background: center;
             color: #fff;
             border: 2px solid #fff;
@@ -162,8 +165,8 @@
     <p class="row row--intro" onclick="location='/home'"> >>>> Into the world of regular expressions
         >>>> </p>
     <form action="/dologin" method="POST" style="text-align: center">
-        <input type="text" placeholder="Your name" name="userName"  required="required"/>
-        <input type="password" placeholder="Your Password" name="drowssap"  required="required"/>
+        <input type="text" placeholder="Your name" name="userName" required="required"/>
+        <input type="password" placeholder="Your Password" name="drowssap" required="required"/>
         <button type="submit" class="loginbtn">Login</button>
         <label style="color:#fff" th:text="${error}"></label>
         <button type="submit" class="loginbtn" onclick="location='/signup'">Sign Up</button>

@@ -7,6 +7,8 @@ import regex.keyboard.infra.dataobject.UserDO;
 @Repository
 public interface UserRepository extends JpaRepository<UserDO, Long> {
     UserDO findByUserName(String userName);
-    UserDO findByUserNameAndDrowssap(String userName,String drowssap);
+
+    UserDO findByUserNameAndDrowssap(String userName, String drowssap);
+
     UserDO findByEmail(String email);
 }

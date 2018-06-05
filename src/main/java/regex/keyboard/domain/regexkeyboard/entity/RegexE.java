@@ -1,4 +1,4 @@
-package regex.keyboard.domain.regexKeyboard.entity;
+package regex.keyboard.domain.regexkeyboard.entity;
 
 /**
  * @Description: entity, regex.

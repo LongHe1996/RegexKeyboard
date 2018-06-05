@@ -1,6 +1,6 @@
 package regex.keyboard.api.dto;
 
-import regex.keyboard.domain.regexKeyboard.entity.QuestionE;
+import regex.keyboard.domain.regexkeyboard.entity.QuestionE;
 
 public class QuestionDTO {
     private QuestionE questionE;
@@ -21,12 +21,12 @@ public class QuestionDTO {
         return message;
     }
 
-    public Boolean getSuccess() {
-        return isSuccess;
-    }
-
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Boolean getSuccess() {
+        return isSuccess;
     }
 
     public void setSuccess(Boolean success) {

@@ -8,6 +8,7 @@ import regex.keyboard.infra.dataobject.QuestionDO;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<QuestionDO, Long> {
-   List<QuestionDO> findByQuestioner(Long questioner);
-   List<QuestionDO> findByOrderByPutTimeDesc();
+    List<QuestionDO> findByQuestioner(Long questioner);
+
+    List<QuestionDO> findByOrderByPutTimeDesc();
 }
