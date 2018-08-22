@@ -21,4 +21,7 @@ public class AnswerBController {
     public AnswerDTO submitAnswer(AnswerE answerE, String loginUserName, Long questionId) {
         return answerServiceV.submitAnswer(answerE, loginUserName, questionId);
     }
+    public List<OneForAllAnswersDTO> getAllMyAnswer(Long userId) {
+        return answerServiceV.getAllMyAnswer(userId);
+    }
 }

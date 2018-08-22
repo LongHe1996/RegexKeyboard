@@ -20,7 +20,10 @@ public class RegexFController {
     public String keyboard(String str, Map<String, Object> map) {
         System.out.println(str);
         RegexResultDTO regexByStr = regexBController.getRegexByStr(str);
-        map.put("regex", regexByStr.getRegexStr());
+        System.out.println(regexByStr.getRegexStr());
+        String regexStr = regexByStr.getRegexStr().replace(" ", "");
+        System.out.println(regexStr);
+        map.put("regex", regexStr);
         JSONObject jsonObject = JSONObject.fromObject(map);
         return jsonObject.toString();
 

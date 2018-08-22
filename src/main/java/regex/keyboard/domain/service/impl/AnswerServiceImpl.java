@@ -37,8 +37,8 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public AnswerDTO updateIfAccepted(AnswerE answerE) {
-        AnswerDO answerDO = answerConvertor.entityToDo(answerE);
+    public AnswerDTO updateIfAccepted(Long answerId) {
+        AnswerDO answerDO = answerRepository.findOne(answerId);
         //1.answer不存在
         if (answerRepository.findOne(answerDO.getId()) == null) {
             return new AnswerDTO(null, "error.update.answer.accept.not.exist." + answerDO.getId(), false);
@@ -68,12 +68,13 @@ public class AnswerServiceImpl implements AnswerService {
     public List<AnswerDTO> selectByQuestionId(Long questionId) {
         List<AnswerDTO> selectByQuestionId = new ArrayList<>();
         List<AnswerDO> byQuestionId = answerRepository.findByQuestionId(questionId);
-        if (byQuestionId.isEmpty()) {
+        if (byQuestionId.isEmpty()||byQuestionId==null || byQuestionId.size()==0) {
             selectByQuestionId.add(new AnswerDTO(null, "error.select.answer.by.question.id.not.exist:" + questionId, false));
             return selectByQuestionId;
         }
         for (AnswerDO answerDO : byQuestionId
                 ) {
+            System.out.println("a:"+answerDO.getId()+","+answerDO.getRespondent());
             AnswerE answerE = answerConvertor.doToEntity(answerDO);
             selectByQuestionId.add(new AnswerDTO(answerE, "success.select.answer.by.question.id.:" + questionId, true));
         }

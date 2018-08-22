@@ -23,10 +23,14 @@ public class CollectionServiceImpl implements CollectionService {
     public List<CollectionDTO> selectByCollector(Long collector) {
         List<CollectionDTO> collectionDTOList = new ArrayList<>();
         List<CollectionDO> byCollector = collectionRepository.findByCollector(collector);
+        if(byCollector==null){
+            collectionDTOList.add(new CollectionDTO(null,"error,select.collection.by,collector",false));
+            return collectionDTOList;
+        }
         for (CollectionDO collectionDO : byCollector
                 ) {
             CollectionE collectionE = collectionConvetor.doToEntity(collectionDO);
-            collectionDTOList.add(new CollectionDTO(collectionE, "success,select.collection.by,collector"));
+            collectionDTOList.add(new CollectionDTO(collectionE, "success,select.collection.by,collector",true));
         }
         return collectionDTOList;
     }
@@ -45,6 +49,16 @@ public class CollectionServiceImpl implements CollectionService {
     public CollectionDTO create(CollectionE collectionE) {
         CollectionDO collectionDO = collectionConvetor.entityToDo(collectionE);
         CollectionDO saveCollectionDO = collectionRepository.save(collectionDO);
-        return new CollectionDTO(collectionConvetor.doToEntity(saveCollectionDO), "success.create.collection:" + saveCollectionDO);
+        return new CollectionDTO(collectionConvetor.doToEntity(saveCollectionDO), "success.create.collection:" + saveCollectionDO,true);
+    }
+
+    @Override
+    public CollectionDTO selectByCollectorAndQuestion(Long userId, Long questionId) {
+        CollectionDO byCollectorAndQuestionId = collectionRepository.findByCollectorAndQuestionId(userId, questionId);
+        if(byCollectorAndQuestionId!=null) {
+            return new CollectionDTO(collectionConvetor.doToEntity(byCollectorAndQuestionId), "success.select.collection.by.u.q:" + byCollectorAndQuestionId, true);
+        }else {
+            return new CollectionDTO(null,"error.select.collection,by u,q:",false);
+        }
     }
 }

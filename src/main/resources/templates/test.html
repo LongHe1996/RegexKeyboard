@@ -44,10 +44,26 @@
     <link rel="stylesheet" href="assets/css/rtl.css"/>
     <link rel="stylesheet" type="text/css" href="style.css"/>
 
+    <link rel="stylesheet" href="layui/css/layui.css" media="all"/>
+
     <!--[if lt IE 9]>
     <script src="js/html5/respond.min.js"></script>
     <![endif]-->
-
+    <style>
+        .matchclass{
+            background : #1e38ae;
+            color: #ffffff;
+            padding: 1px;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-left: 5px;
+            margin-right: 5px;
+            border: 1px solid #1e38ae;
+            height: 17px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
+    </style>
 </head>
 
 <body data-offset="200" data-spy="scroll" data-target=".ownavigation">
@@ -115,9 +131,8 @@
                                                    role="button" aria-haspopup="true" aria-expanded="false">Q&amp;A</a>
                                                 <i class="ddl-switch fa fa-angle-down"></i>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="myquestion.html">My Question</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="myanswer.html">My Answer</a></li>
+                                                    <li><a class="dropdown-item  myquestionlogin"></a></li>
+                                                    <li><a class="dropdown-item myanswerlogin"></a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -158,32 +173,67 @@
                                 <div class="card">
                                     <div class="card-header" id="question-1">
                                         <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse"
-                                                    data-target="#question-detail-1" aria-expanded="true"
-                                                    aria-controls="question-detail-1">Regex
-                                            </button>
+                                            <table>
+                                                <tr style="width:100%">
+                                                    <td style="width: 40%">
+                                                        <button class="btn btn-link" data-toggle="collapse"
+                                                                data-target="#question-detail-2" aria-expanded="true"
+                                                                aria-controls="question-detail-2">Regex
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <form class="layui-form" style="margin-left: 10px">
+                                                            <input type="checkbox" name="g" title="Global" checked=""/>
+                                                            <input type="checkbox" name="m" title="Multiline"/>
+                                                            <input type="checkbox" name="i" title="CaseInsensitive"/>
+                                                        </form>
+
+                                                    </td>
+                                                    <td>
+                                                        <button class="layui-btn layui-btn-sm" style="background: #1e38ae;margin-left: 10px; " onclick="getresult()">
+                                                            <i class="layui-icon">&#xe642;Test</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </h5>
                                     </div>
                                     <div id="question-detail-1" class="collapse show" aria-labelledby="question-1"
                                          data-parent="#faq-accordion">
                                         <div class="card-body">
-                                            <input type="text" style="height: 100%;width: 100%"/>
+                                            <div class="regexbox" contenteditable="true" style="border: gray solid 1px;overflow:auto;width: 100%;height: 40px;padding: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" >
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="question-2">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse"
-                                                    data-target="#question-detail-2" aria-expanded="true"
-                                                    aria-controls="question-detail-2">Text
-                                            </button>
+                                        <h5 class="mb-0" >
+                                            <table style="width: 100%">
+                                                <tr style="width: 100%;padding: 0%">
+                                                    <td style="width: 80%">
+                                                        <button class="btn btn-link" data-toggle="collapse"
+                                                                data-target="#question-detail-2" aria-expanded="true"
+                                                                aria-controls="question-detail-2">Text
+                                                        </button>
+                                                    </td>
+                                                    <td style="padding:0px;">
+                                                        <div style="height: 35px;margin-left:20px;">
+                                                            <label  class="matchbox" style="text-align: center;border: 1px solid gray;padding: 4px">0</label>
+                                                            <label style="text-align: center;background: #1e38ae;color: white;padding: 5px">MATCHES</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </h5>
                                     </div>
                                     <div id="question-detail-2" class="collapse show" aria-labelledby="question-2"
                                          data-parent="#faq-accordion">
                                         <div class="card-body">
-                                            <input type="text" style="height: 100%;width: 100%"/>
+                                            <div class="strbox" contenteditable="true" style="text-indent:5px;border: gray solid 1px;overflow:auto;width: 100%;height: 100px;padding: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -192,14 +242,16 @@
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" data-toggle="collapse"
                                                     data-target="#question-detail-3" aria-expanded="true"
-                                                    aria-controls="question-detail-2">Tools
+                                                    aria-controls="question-detail-2">Result
                                             </button>
                                         </h5>
                                     </div>
                                     <div id="question-detail-3" class="collapse show" aria-labelledby="question-3"
                                          data-parent="#faq-accordion">
                                         <div class="card-body">
+                                            <div class="resultBox" style="border: gray solid 1px;overflow:auto;width: 100%;font-size: 10px;height: 100px;padding: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -244,10 +296,92 @@
 <!-- Library - Js -->
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/lib.js"></script>
-
+<script src="layui/layui.js"></script>
 <!-- Library - Theme JS -->
 <script id="function" src="assets/js/functions.js"></script>
 <script>
+
+    function analyzeStr(regexstr,str){
+        //获取匹配规则
+        var flags="";
+        if($("input[name='g']").is(':checked')){
+            flags=flags+"g";
+        }
+        if($("input[name='i']").is(':checked')){
+            flags=flags+"i";
+        }
+        if($("input[name='m']").is(':checked')){
+            flags=flags+"m";
+        }
+        //定义正则表达式对象
+        var patt=new RegExp(regexstr,flags);
+        console.log("reg:"+patt);
+        //匹配次数
+        if(patt.test(str)){
+            var matchs=str.match(patt);
+            $(".matchbox").text(matchs.length);
+            $(".matchbox").css("background","white","color","black");
+            $(".matchbox").css("color","black");
+        }else{
+            $(".matchbox").text("0");
+            $(".matchbox").css("background","red","color","white");
+            $(".matchbox").css("color","white");
+        }
+        //匹配样式
+        var tmp="";
+        if(patt.test(str)){
+            var matchs=str.match(patt);
+            if(flags.indexOf("g")==-1){
+                var element=matchs[0];
+                var index1=str.indexOf(element);
+                var index2=index1+element.length;
+                var str2=str.substring(index2,str.length)
+                str=str.substring(0,index1);
+                var matchclass="\"matchclass\"";
+                tmp="<label class="+matchclass+">"+element+"</label>"+str2+tmp;
+            }else{
+                matchs.reverse();
+                matchs.forEach(element => {
+                    console.log(element);
+                var index1=str.lastIndexOf(element);
+                var index2=index1+element.length;
+                var str2=str.substring(index2,str.length)
+                str=str.substring(0,index1);
+                var matchclass="\"matchclass\"";
+                tmp="<label class="+matchclass+">"+element+"</label>"+str2+tmp;
+            });
+            }
+
+            tmp=str+tmp;
+        }
+        //换行
+        tmp=tmp.replace(/\\n/g,"<br/>");
+        console.log("tmp:"+tmp);
+        return tmp;
+    }
+
+    function getresult(){
+        var regexstr=$('.regexbox').text();
+        console.log("regex:"+regexstr);
+        // 换行符转义
+        if(regexstr=="\\n" || regexstr=="\\r" || regexstr=="\\cx"){
+             regexstr="\\\\n";
+        }
+        regexstr=$.trim(regexstr);
+        var str=$(".strbox").html();
+        console.log("str:"+str);
+        str=str.replace(/<div>/g,"\\n");
+        var regexdiv=new RegExp("</div>","g");
+        str=str.replace(regexdiv,"");
+        console.log("str:"+str);
+        // alert(regexstr+":"+str);
+        var result=analyzeStr(regexstr,str)
+        // alert(result);
+        $(".resultBox").text("");
+        $(".resultBox").html(result);
+    }
+
+
     $(document).ready(function () {
         var name = $.cookie("LoginUserName");
         var url1 = "\"profile.html\"";
@@ -256,9 +390,47 @@
         var url3 = "\"collection.html\"";
         if (name != null) {
             $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
-            $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>")
+            $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>");
+            //Menu box
+            $(".myquestionlogin").attr("href", "/myquestion");
+            $(".myquestionlogin").text("My Question");
+            $(".myanswerlogin").attr("href", "/myanswer");
+            $(".myanswerlogin").text("My Answer");
         } else {
             $(".loginname").append("<a href=" + url2 + ">尚未登录</a>");
+            //Menu box
+            $(".myquestionlogin").text("My Queztion- No Login");
+            $(".myquestionlogin").attr("href", "/");
+            $(".myanswerlogin").text("My Answer - No Login");
+            $(".myanswerlogin").attr("href", "/");
+        }
+    })
+
+    layui.use('form', function(){
+        var form = layui.form;
+        form.render();
+    });
+
+    $(function () {
+        if(window.location.search!=""){
+            var str=window.location.search.substr(6);
+            str=decodeURI(str);
+            var number = str.indexOf("example");
+            var rule=str.substr(0,number);
+            var regexdiv=new RegExp("esc");
+            rule=rule.replace(regexdiv,"\\");
+            var regexdiv=new RegExp("beg");
+            rule=rule.replace(regexdiv,"^");
+            var regexdiv=new RegExp("huo");
+            rule=rule.replace(regexdiv,"|");
+            var regexdiv=new RegExp("left");
+            rule=rule.replace(regexdiv,"{");
+            var regexdiv=new RegExp("rignt");
+            rule=rule.replace(regexdiv,"}");
+            var example=str.substr(number+7);
+            example=example.trim();
+            $(".regexbox").text(rule);
+            $(".strbox").html(example);
         }
     })
 </script>

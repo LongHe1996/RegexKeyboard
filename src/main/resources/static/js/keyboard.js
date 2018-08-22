@@ -8,6 +8,9 @@ $(window).keydown(function (event) {
     if ((code < 48 && code != 32) || (57 < code && 65 > code) || (code > 90 && code != 189 && code != 188)) {
         return;
     }
+    if(code==55 || code ==56 || code ==57){
+        return false;
+    }
     if (code == 32) {
         if ($("li[data-code='32']").text() == "GetFocus") {
             $("li[data-code='32']").text("LoseFocus");
@@ -38,7 +41,6 @@ $(window).keyup(function (event) {
     console.log("KEYOFF:" + key + "/" + code + "@" + event.timeStamp);
     if (!osc[code])
         return;
-    stopSound(code);
 });
 
 function fillBox(code) {
@@ -88,7 +90,6 @@ $("li").mousedown(function (event) {
     var key = $(this).data("key");
     var code = $(this).data("code");
     console.log("MOUSEON:" + key + "/" + code + "@" + event.timeStamp);
-    startSound();
 });
 
 $("li").mouseup(function (event) {
@@ -96,15 +97,14 @@ $("li").mouseup(function (event) {
     var key = $(this).data("key");
     var code = $(this).data("code");
     console.log("MOUSEOFF:" + key + "/" + code + "@" + event.timeStamp);
-    stopSound();
 });
 
 //hover hint
 $("li").mouseover(function (event) {
     $(".hintbox").text($(this).data("key"));
-    $(this).addClass("active");
+    $("li[data-code='" + $(this).data("code") + "']").addClass("active")
 });
 $("li").mouseout(function (event) {
     $(".hintbox").text("hint.")
-    $(this).removeClass("active");
+    $("li[data-code='" + $(this).data("code") + "']").removeClass("active");
 });

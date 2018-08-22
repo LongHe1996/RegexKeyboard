@@ -16,9 +16,14 @@ public class RegexServiceVImpl implements RegexServiceV {
         String[] split = regexDescribe.split("\n");
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < split.length; i++) {
+            if(split[i].indexOf(":")!=0 && split[i].indexOf(":")!= split[i].length()-1){
+                split[i]="( "+split[i]+")";
+                System.out.println(split[i]);
+            }
             String s = replaceUtil.replaseSelfUtil(split[i]);
             String x = replaceUtil.replaceNTimes(s);
             String m = replaceUtil.replaceLTimes(x);
+            String tmp=replaceUtil.replasceNMTimes(m);
             result.append(replaceUtil.replasceNMTimes(m));
         }
         return new RegexResultDTO(result.toString(), "替换完成", true);

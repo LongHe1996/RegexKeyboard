@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findOne(userDO.getId()) == null) {
             return new UserDTO(null, "error.update.user.not.exist." + userDO.getId(), false);
         }
+        System.out.println(userDO);
         UserDO updateUserDO = userRepository.save(userDO);
         return new UserDTO(userConvertor.doToEntity(updateUserDO), "success.update.user:" + updateUserDO, true);
     }

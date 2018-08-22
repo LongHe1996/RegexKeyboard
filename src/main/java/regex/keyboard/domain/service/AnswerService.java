@@ -12,7 +12,7 @@ public interface AnswerService {
 
     String deleteById(Long id);
 
-    AnswerDTO updateIfAccepted(AnswerE answerE);
+    AnswerDTO updateIfAccepted(Long  answerId);
 
     List<AnswerDTO> selectByRespondent(Long respondent);
 

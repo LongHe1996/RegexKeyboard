@@ -18,7 +18,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>MyQuestion - Regex Keyboard</title>
+    <title>Collection - Regex Keyboard</title>
 
     <!-- Standard Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images//favicon.ico"/>
@@ -140,10 +140,10 @@
                     <div class="page-banner">
                         <!-- Container -->
                         <div class="container">
-                            <h3>MyQuestion</h3>
+                            <h3>Collection</h3>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-                                <li class="breadcrumb-item active">MyQuestion</li>
+                                <li class="breadcrumb-item active">Collection</li>
                             </ol>
                         </div><!-- Container /- -->
                     </div><!-- Page Banner /- -->
@@ -152,11 +152,12 @@
                     <div class="container">
                         <!-- FAQ Section -->
                         <div class="faq-section">
-                            <div class="section-header">
-                                <h3 class="colTitlebox"></h3>
-                            </div>
                             <!-- Section Header -->
+                            <div class="section-header">
+                                <h3 class="colTitlebox">Collection&nbsp;&nbsp;</h3>
+                            </div><!-- Section Header -->
                             <div id="faq-accordion" class="faq-content">
+
                             </div>
                         </div><!-- FAQ Section /- -->
                     </div><!-- Container /- -->
@@ -208,22 +209,22 @@
         var font = "\"fa fa-heart\"";
         var url3 = "\"collection.html\"";
         if (name != null) {
-            $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
-            $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>");
-            //Menu box
+            // Menu box
             $(".myquestionlogin").attr("href", "/myquestion");
             $(".myquestionlogin").text("My Question");
             $(".myanswerlogin").attr("href", "/myanswer");
             $(".myanswerlogin").text("My Answer");
+            $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
+            $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>")
             $.ajax({
                 type: "get",
-                url: "getAllMyQuetions?userId=" + $.cookie("LoginUserId"),
+                url: "someonesCollection?userId=" + $.cookie("LoginUserId"),
                 dataType: "json",
                 success: function (data) {
                     if (data["error"] != "0") {
                         $(".colTitlebox").append(data["error"]);
                     } else {
-                        $.each(data["allmyQuestion"], function (i, que) {
+                        $.each(data["collection"], function (i, col) {
                             var card = "\"card\"";
                             var cardheader = "\"card-header\"";
                             var question1 = "\"question-"+i+"\"";
@@ -235,15 +236,15 @@
                             var faq="\"#faq-accordion\""
                             var turestr = "\"true\"";
                             var carbody="\"card-body\"";
-                            var questionHerf="\"getsinglequestion?id="+que.id+"\"";
+                            var questionHerf="\"getsinglequestion?id="+col.id+"\"";
                             var str = "<div class=" + card + ">"
                                 + "<div class=" + cardheader + " id=" + question1 + ">"
                                 + "<h5 class=" + mb0 + ">"
-                                + "<button class=" + btnlink + " data-toggle=" + datatoggle + " data-target=" + questiondetail + " aria-expanded=" + turestr + " aria-controls=" + questiondetail + ">" + que.questionTitle + "</button>"
+                                + "<button class=" + btnlink + " data-toggle=" + datatoggle + " data-target=" + questiondetail + " aria-expanded=" + turestr + " aria-controls=" + questiondetail + ">" + col.questionTitle + "</button>"
                                 + "</h5></div>"
                                 + "<div id="+questiondetail+" class="+collapseshow+" aria-labelledby="+question1+" data-parent="+faq+">"
                                 + "<div class="+carbody+">"
-                                +"<a href="+questionHerf+">"+que.questionContent+"<br/>"+"回答于"+que.putTime+"</a>"
+                                +"<a href="+questionHerf+">"+col.questionContent+"<br/>"+"收藏于"+col.putTime+"</a>"
                                 + "</div></div></div>";
                             $(".faq-content").append(str);
                         });
@@ -253,8 +254,10 @@
                     alert("失败，请稍后再试！");
                 }
             })
+
         } else {
             $(".loginname").append("<a href=" + url2 + ">尚未登录</a>");
+            $(".colTitlebox").append(data["没有登录哦！"]);
             //Menu box
             $(".myquestionlogin").text("My Queztion- No Login");
             $(".myquestionlogin").attr("href", "/");

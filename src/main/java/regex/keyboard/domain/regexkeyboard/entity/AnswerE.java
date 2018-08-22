@@ -12,18 +12,18 @@ public class AnswerE {
     private Long id;
     private String answerContent;
     private UserE respondent;
-    private QuestionE question;
+    private Long  questionId;
     private Date putTime;
     private Boolean isAccepted;
 
     public AnswerE() {
     }
 
-    public AnswerE(Long id, String answerContent, UserE respondent, QuestionE question, Date putTime, Boolean isAccepted) {
+    public AnswerE(Long id, String answerContent, UserE respondent, Long questionId, Date putTime, Boolean isAccepted) {
         this.id = id;
         this.answerContent = answerContent;
         this.respondent = respondent;
-        this.question = question;
+        this.questionId = questionId;
         this.putTime = putTime;
         this.isAccepted = isAccepted;
     }
@@ -52,12 +52,12 @@ public class AnswerE {
         this.respondent = respondent;
     }
 
-    public QuestionE getQuestion() {
-        return question;
+    public Long getQuestionId() {
+        return questionId;
     }
 
-    public void setQuestion(QuestionE question) {
-        this.question = question;
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
     }
 
     public Date getPutTime() {
@@ -82,7 +82,7 @@ public class AnswerE {
                 "id=" + id +
                 ", answerContent='" + answerContent + '\'' +
                 ", respondent=" + respondent +
-                ", question=" + question +
+                ", questionId=" + questionId +
                 ", putTime=" + putTime +
                 ", isAccepted=" + isAccepted +
                 '}';

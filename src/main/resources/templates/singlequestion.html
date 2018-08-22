@@ -18,7 +18,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Question - Regex Keyboard</title>
+    <title>SingleQuestion - Regex Keyboard</title>
 
     <!-- Standard Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images//favicon.ico"/>
@@ -93,7 +93,7 @@
                                 <!-- Container -->
                                 <div class="container">
                                     <!--a class="navbar-brand text-logo" href="index.html">Airco <span>air conditioning</span></a-->
-                                    <a class="image-logo navbar-brand" href="index.html"><img
+                                    <a class="image-logo navbar-brand" href="home.html"><img
                                             src="assets/images/logo.png" alt="Logo"/></a>
                                     <button class="navbar-toggler navbar-toggler-right" type="button"
                                             data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
@@ -142,7 +142,7 @@
                         <div class="container">
                             <h3>Single Question</h3>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="home.html">Home</a></li>
                                 <li class="breadcrumb-item active">Single Question</li>
                             </ol>
                         </div><!-- Container /- -->
@@ -161,11 +161,12 @@
                                             <h3 class="post-title" th:text="${questionTitle}"></h3>
                                             <p th:text="${questionContent}"></p>
                                             <div class="post-meta">
-                                                <span class="post-date"><a th:text="${questionerNickName}"></a></span>
+                                                <span class="post-date"><a th:text="${questionerNickName}"></a><label class="questioner" th:text="${questionerId}" style="color: #ffffff"></label></span>
                                                 <span class="post-date"><a
                                                         th:text="${questionPutTime}"></a></span>
                                                 <span class="post-comments"><a
                                                         th:text="${answerNum}"></a></span>
+                                                <button class="btncol" onclick="putIntoCol()">收藏</button>
                                             </div>
                                         </div>
                                     </div>
@@ -271,14 +272,77 @@
         var font = "\"fa fa-heart\"";
         var url3 = "\"collection.html\"";
         if (name != null) {
+            $(".submit").attr("disabled",false);
             $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
             $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>")
             $(".hiddenInput").val(name);
             $(".hiddenQuestionId").val(window.location.search.substr(4));
+            //Menu box
+            $(".myquestionlogin").attr("href", "/myquestion");
+            $(".myquestionlogin").text("My Question");
+            $(".myanswerlogin").attr("href", "/myanswer");
+            $(".myanswerlogin").text("My Answer");
+
+            $.ajax({
+                type: "get",
+                url: "someonesCollection?userId=" + $.cookie("LoginUserId"),
+                dataType: "json",
+                success: function (data) {
+                    if (data["error"] == "0") {
+                        $(".colTitlebox").append(data["error"]);
+                        var flag = false;
+                        $.each(data["collection"], function (i, col) {
+                            if (col.id == window.location.search.substr(4)) {
+                                flag = true;
+                            }
+                        });
+                        if (flag) {
+                            $(".btncol").text("取消收藏");
+                        } else {
+                            $(".btncol").text("收藏");
+                        }
+                    }
+                },
+                error: function () {
+                    alert("失败，请稍后再试！");
+                }
+            })
         } else {
+            $(".submit").attr("disabled",true);
+            $(".submit").val("尚未登录哦");
             $(".loginname").append("<a href=" + url2 + ">尚未登录</a>");
+            //Menu box
+            $(".myquestionlogin").text("My Queztion- No Login");
+            $(".myquestionlogin").attr("href", "/");
+            $(".myanswerlogin").text("My Answer - No Login");
+            $(".myanswerlogin").attr("href", "/");
         }
     })
+
+    function putIntoCol() {
+        if ($.cookie("LoginUserName") != null) {
+            $.ajax({
+                type: "get",
+                url: "colop?uqstr=" + $.cookie("LoginUserId") + "a" + window.location.search.substr(4),
+                dataType: "json",
+                success: function (data) {
+                    if (data["msg"] == "已收藏") {
+                        $(".btncol").text("取消收藏");
+                        $(".btncol").attr("onclick", "putIntoCol()");
+                    } else {
+                        $(".btncol").text("收藏");
+                        $(".btncol").attr("onclick", "putIntoCol()");
+                    }
+                },
+                error: function () {
+                    alert("失败，请稍后再试！");
+                }
+            })
+        } else {
+            alert("尚未登录哦");
+        }
+    }
+
 
     $.ajax({
         type: "GET",
@@ -295,16 +359,22 @@
                 var truestr = "\"true\"";
                 var brushcolor = "\"color: #1e38ae\"";
                 var checkcolor = "\"color:green;\"";
+                var accepthint = "\"accepthint\"";
+                var ifsolved = false;
                 $.each(data["allAnswers"], function (i, item) {
                     var str = "<div class=" + answerbox + ">"
                         + "<label>" + item.nickName + "</label><label>" + item.putTime + "</label>"
                         + "<button class=" + acceptbtn + ">";
                     if (item.accepted) {
-                        str = str + "<label style=" + acceptbtnhidden + "></label>"
+                        ifsolved=true;
+                        str = str + "<label class=" + accepthint + " style=" + acceptbtnhidden + ">已被采纳</label>"
                             + "<i class = " + check + " aria-hidden= " + truestr + " style = " + checkcolor + "></i>";
-                    } else {
-                        str = str + "<label class=" + acceptbox + " style=" + acceptbtnhidden + ">采纳?</label>"
+                    } else if(!ifsolved){
+                        str = str + "<label data-answerid="+item.id+" class=" + acceptbox + " style=" + acceptbtnhidden + ">采纳?</label>"
                             + "<i class= " + brush + " aria-hidden= " + truestr + " style = " + brushcolor + "></i>";
+                    }else if(ifsolved){
+                        str = str + "<label class=" + accepthint + " style=" + acceptbtnhidden + ">已有采纳！</label>"
+                            + "<i class= " + brush +accepthint+" aria-hidden= " + truestr + " style = " + brushcolor + "></i>";
                     }
                     str = str + "</button><p>" + item.answerContent + "</p></div>";
                     $(".allanswerbox").append(str);
@@ -324,19 +394,36 @@
                     var singlequestion = "\"getsinglequestion?id=" + item.id + "\"";
                     var str = "<li class=" + catitem + "><a href=" + singlequestion + ">" + item.questionTitle.substr(0, 8) + "…</a>(" + item.answerNum + ")</li>";
                     $(".latestquestionbox").append(str);
-
                 })
             }
         }
     });
+    $("body").on("mouseover", ".acceptbtn",function () {
+        $(this).children(".acceptbox").css("visibility","");
+    } );
+    $("body").on("mouseout", ".acceptbtn",function () {
+        $(this).children(".acceptbox").css("visibility","hidden");
+    } );
+    $("body").on("mouseover", ".acceptbtn",function () {
+        $(this).children(".accepthint").css("visibility","");
+    } );
+    $("body").on("mouseout", ".acceptbtn",function () {
+        $(this).children(".accepthint").css("visibility","hidden");
+    } );
+    $("body").on("click", ".acceptbox",function () {
+        var answerId=$(this).data("answerid");
+        alert(answerId);
+        var questioner = $(".questioner").text();
+        var loginuser = $.cookie("LoginUserId");
+        if(loginuser==null){
+            alert("没有登录哦！");
+        }else if(questioner==loginuser){
+            window.location.href="doaccept?qanda="+window.location.search.substr(4)+"answer"+answerId;
+        }else{
+            alert('你不是提问人，不能进行采纳哦！');
+        }
 
-
-    $(".acceptbtn").mouseover(function () {
-        $(this).children(".acceptbox").css("visibility", "");
-    });
-    $(".acceptbtn").mouseout(function () {
-        $(this).children(".acceptbox").css("visibility", "hidden");
-    });
+    } );
 </script>
 
 </body>

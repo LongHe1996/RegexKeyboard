@@ -20,15 +20,16 @@ public class RegexRulesDO {
     private String ruleDescribe;
     @Column(nullable = false)
     private Long ruleNature;
-
+    private String ruleExample;
     public RegexRulesDO() {
     }
 
-    public RegexRulesDO(Long id, String ruleContent, String ruleDescribe, Long ruleNature) {
-        this.id = id;
+    public RegexRulesDO(Long id,String ruleContent, String ruleDescribe, Long ruleNature, String ruleExample) {
+        this.id=id;
         this.ruleContent = ruleContent;
         this.ruleDescribe = ruleDescribe;
         this.ruleNature = ruleNature;
+        this.ruleExample = ruleExample;
     }
 
     public Long getId() {
@@ -61,5 +62,13 @@ public class RegexRulesDO {
 
     public void setRuleNature(Long ruleNature) {
         this.ruleNature = ruleNature;
+    }
+
+    public String getRuleExample() {
+        return ruleExample;
+    }
+
+    public void setRuleExample(String ruleExample) {
+        this.ruleExample = ruleExample;
     }
 }

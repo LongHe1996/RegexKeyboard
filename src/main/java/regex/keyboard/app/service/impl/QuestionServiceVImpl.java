@@ -12,11 +12,14 @@ import regex.keyboard.api.dto.UserDTO;
 import regex.keyboard.app.service.QuestionSericeV;
 import regex.keyboard.domain.regexkeyboard.convertor.QuestionConvertor;
 import regex.keyboard.domain.regexkeyboard.entity.QuestionE;
+import regex.keyboard.domain.service.AnswerService;
 import regex.keyboard.domain.service.QuestionService;
 import regex.keyboard.domain.service.UserService;
 
 @Service
 public class QuestionServiceVImpl implements QuestionSericeV {
+    @Autowired
+    private AnswerService answerService;
     @Autowired
     private QuestionService questionService;
     @Autowired
@@ -41,6 +44,7 @@ public class QuestionServiceVImpl implements QuestionSericeV {
     public List<OneForAllQuestionDTO> getAllQuestions() {
         List<OneForAllQuestionDTO> oneForAllQuestionDTOS = new ArrayList<>();
         List<QuestionDTO> questionDTOS = questionService.selectAllSort();
+        System.out.println("allq");
         for (QuestionDTO questionDTO : questionDTOS
                 ) {
             OneForAllQuestionDTO oneForAllQuestionDTO = questionConvertor.DtoToForView(questionDTO);
@@ -58,5 +62,28 @@ public class QuestionServiceVImpl implements QuestionSericeV {
             questionDTO.setMessage("检索成功！");
         }
         return questionConvertor.DtoToForView(questionDTO);
+    }
+
+    @Override
+    public List<OneForAllQuestionDTO> getAllMyQuestions(Long userId) {
+        List<OneForAllQuestionDTO> allMyQuestions = new ArrayList<>();
+        List<QuestionDTO> questionDTOS = questionService.selectByQuestioner(userId);
+        if(!questionDTOS.get(0).getSuccess()){
+            return allMyQuestions;
+        }
+        for (QuestionDTO questionDTO : questionDTOS
+                ) {
+            OneForAllQuestionDTO oneForAllQuestionDTO = questionConvertor.DtoToForView(questionDTO);
+            allMyQuestions.add(oneForAllQuestionDTO);
+        }
+        return allMyQuestions;
+    }
+
+    @Override
+    public QuestionDTO doAccept(Long questionId,Long answerId) {
+        QuestionDTO questionDTO = questionService.selectById(questionId);
+        answerService.updateIfAccepted(answerId);
+        return questionService.updateIfSolved(questionDTO.getQuestionE(), answerId);
+
     }
 }

@@ -14,11 +14,11 @@ import regex.keyboard.infra.dataobject.RegexRulesDO;
 public class RegexRulesConvertor implements ConvertorI<RegexRulesDO, RegexRulesE> {
     @Override
     public RegexRulesE doToEntity(RegexRulesDO dataObject) {
-        return new RegexRulesE(dataObject.getId(), dataObject.getRuleContent(), dataObject.getRuleDescribe(), dataObject.getRuleNature());
+        return new RegexRulesE(dataObject.getId(), dataObject.getRuleContent(), dataObject.getRuleDescribe(), dataObject.getRuleNature(),dataObject.getRuleExample());
     }
 
     @Override
     public RegexRulesDO entityToDo(RegexRulesE entity) {
-        return new RegexRulesDO(entity.getId(), entity.getRuleContent(), entity.getRuleDescribe(), entity.getRuleNature());
+        return new RegexRulesDO(entity.getId(), entity.getRuleContent(), entity.getRuleDescribe(), entity.getRuleNature(),entity.getRuleExample());
     }
 }

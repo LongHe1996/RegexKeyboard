@@ -35,16 +35,15 @@ public class AnswerConvertor implements ConvertorI<AnswerDO, AnswerE> {
 
     @Override
     public AnswerE doToEntity(AnswerDO dataObject) {
+        System.out.println("u"+dataObject.getRespondent());
         UserDO userDO = userRepository.findOne(dataObject.getRespondent());
         UserE userE = userConvertor.doToEntity(userDO);
-        QuestionDO questionDO = questionRepository.findOne(dataObject.getQuestionId());
-        QuestionE questionE = questionConvertor.doToEntity(questionDO);
-        return new AnswerE(dataObject.getId(), dataObject.getAnswerContent(), userE, questionE, dataObject.getPutTime(), dataObject.getAccepted());
+        return new AnswerE(dataObject.getId(), dataObject.getAnswerContent(), userE, dataObject.getQuestionId(), dataObject.getPutTime(), dataObject.getAccepted());
     }
 
     @Override
     public AnswerDO entityToDo(AnswerE entity) {
-        return new AnswerDO(entity.getId(), entity.getAnswerContent(), entity.getRespondent().getId(), entity.getQuestion().getId(), entity.getPutTime(), entity.getAccepted());
+        return new AnswerDO(entity.getId(), entity.getAnswerContent(), entity.getRespondent().getId(), entity.getQuestionId(), entity.getPutTime(), entity.getAccepted());
     }
 
     public OneForAllAnswersDTO dtoToForView(AnswerDTO dto) {
@@ -52,7 +51,7 @@ public class AnswerConvertor implements ConvertorI<AnswerDO, AnswerE> {
         //格式化时间
         DateFormat bf = new SimpleDateFormat("HH:mm MM-dd yyyy");
         String formatTime = bf.format(entity.getPutTime());
-        return new OneForAllAnswersDTO(entity.getId(), entity.getAnswerContent(), entity.getRespondent().getNickName(), entity.getQuestion().getId(), formatTime, entity.getAccepted());
+        return new OneForAllAnswersDTO(entity.getId(), entity.getAnswerContent(), entity.getRespondent().getNickName(), entity.getQuestionId(), formatTime, entity.getAccepted());
     }
 
 }

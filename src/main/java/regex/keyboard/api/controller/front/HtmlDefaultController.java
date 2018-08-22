@@ -75,6 +75,11 @@ public class HtmlDefaultController {
         return "/signup";
     }
 
+    @GetMapping("collection")
+    public String getCollection() {
+        return "/collection";
+    }
+
     @RequestMapping("/hello")
     public String helloHtml(Map<String, Object> map) {
         map.put("hello", "欢迎进入HTML页面");

@@ -93,4 +93,17 @@ public class QuestionDO {
     public void setAcceptAnswer(Long acceptAnswer) {
         this.acceptAnswer = acceptAnswer;
     }
+
+    @Override
+    public String toString() {
+        return "QuestionDO{" +
+                "id=" + id +
+                ", questionTitle='" + questionTitle + '\'' +
+                ", questionContent='" + questionContent + '\'' +
+                ", questioner=" + questioner +
+                ", putTime=" + putTime +
+                ", isSolved=" + isSolved +
+                ", acceptAnswer=" + acceptAnswer +
+                '}';
+    }
 }

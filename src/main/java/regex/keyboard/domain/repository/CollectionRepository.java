@@ -11,4 +11,7 @@ public interface CollectionRepository extends JpaRepository<CollectionDO, Long> 
     List<CollectionDO> findByQuestionId(Long questionId);
 
     List<CollectionDO> findByCollector(Long collector);
+
+    CollectionDO findByCollectorAndQuestionId(Long collector,Long questionId);
+
 }

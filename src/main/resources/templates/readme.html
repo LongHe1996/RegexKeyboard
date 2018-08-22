@@ -116,9 +116,8 @@
                                                    role="button" aria-haspopup="true" aria-expanded="false">Q&amp;A</a>
                                                 <i class="ddl-switch fa fa-angle-down"></i>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="myquestion.html">My Question</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="myanswer.html">My Answer</a></li>
+                                                    <li><a class="dropdown-item  myquestionlogin"></a></li>
+                                                    <li><a class="dropdown-item myanswerlogin"></a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -153,19 +152,19 @@
                     <div class="repair-cost-section">
                         <div class="repair-cost-detail">
                             <div class="cost-box cost-2">
-                                <h3>function introduction of q&amp;a</h3>
+                                <h3>在这里你可以尽情提出你的疑惑！总有朋友会回答你！</h3>
                                 <span><a href="qanda.html">q&amp;a</a></span>
                             </div>
                             <div class="cost-box cost-3">
-                                <h3>function introduction of test</h3>
+                                <h3>这里提供字符串匹配与正则表达式验证的功能！</h3>
                                 <span><a href="test.html">test</a></span>
                             </div>
                             <div class="cost-box cost-4">
-                                <h3>function introduction of regex keyboard</h3>
+                                <h3>在这里可以根据你的想法生成正则表达式！使用前请参考每个键的功能！</h3>
                                 <span><a href="keyboard.html">regex keyboard</a></span>
                             </div>
                             <div class="cost-box cost-5">
-                                <h3>function introduction of learnmore</h3>
+                                <h3>来这里学习更多关于正则表达式的知识吧，并且附带示例哦！</h3>
                                 <span><a href="learnmore.html">regex learn</a></span>
                             </div>
                             <div class="cost-box cost-default">
@@ -237,8 +236,18 @@
         if (name != null) {
             $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
             $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>")
+            //Menu box
+            $(".myquestionlogin").attr("href", "/myquestion");
+            $(".myquestionlogin").text("My Question");
+            $(".myanswerlogin").attr("href", "/myanswer");
+            $(".myanswerlogin").text("My Answer");s
         } else {
             $(".loginname").append("<a href=" + url2 + ">尚未登录</a>");
+            //Menu box
+            $(".myquestionlogin").text("My Queztion- No Login");
+            $(".myquestionlogin").attr("href", "/");
+            $(".myanswerlogin").text("My Answer - No Login");
+            $(".myanswerlogin").attr("href", "/");
         }
     })
 </script>

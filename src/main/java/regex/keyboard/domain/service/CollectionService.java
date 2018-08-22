@@ -13,4 +13,6 @@ public interface CollectionService {
     String deleteById(Long id);
 
     CollectionDTO create(CollectionE collectionE);
+
+    CollectionDTO selectByCollectorAndQuestion(Long userId,Long questionId);
 }

@@ -25,4 +25,12 @@ public class QuestionBController {
     public OneForAllQuestionDTO getOneQuestion(Long questionId) {
         return questionSericeV.getAQuestion(questionId);
     }
+
+    public List<OneForAllQuestionDTO> getAllMyQuestion(Long userId) {
+        return questionSericeV.getAllMyQuestions(userId);
+    }
+    public Boolean doAccept(Long questionId,Long answerId){
+        QuestionDTO questionDTO = questionSericeV.doAccept(questionId, answerId);
+        return questionDTO.getSuccess();
+    }
 }

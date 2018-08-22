@@ -12,4 +12,6 @@ public interface AnswerServiceV {
     List<OneForAllAnswersDTO> getAllTheAnswersToAQuestion(Long questionId);
 
     AnswerDTO submitAnswer(AnswerE answerE, String loginUserName, Long questionId);
+
+    List<OneForAllAnswersDTO> getAllMyAnswer(Long userId);
 }

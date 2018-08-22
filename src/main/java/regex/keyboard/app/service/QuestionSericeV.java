@@ -14,4 +14,8 @@ public interface QuestionSericeV {
     List<OneForAllQuestionDTO> getAllQuestions();
 
     OneForAllQuestionDTO getAQuestion(Long id);
+
+    List<OneForAllQuestionDTO> getAllMyQuestions(Long userId);
+
+    public QuestionDTO doAccept(Long questionId,Long answerId);
 }

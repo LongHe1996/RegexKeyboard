@@ -18,7 +18,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Home - Airco</title>
+    <title>LearnMore - Regex Keyboard</title>
 
     <!-- Standard Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images//favicon.ico"/>
@@ -133,9 +133,8 @@
                                                    role="button" aria-haspopup="true" aria-expanded="false">Q&amp;A</a>
                                                 <i class="ddl-switch fa fa-angle-down"></i>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="myquestion.html">My Question</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="myanswer.html">My Answer</a></li>
+                                                    <li><a class="dropdown-item  myquestionlogin"></a></li>
+                                                    <li><a class="dropdown-item myanswerlogin"></a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -172,7 +171,7 @@
                         <div class="tree">
                             <ul>
                                 <li>
-                                    <span><i class="icon-calendar"></i>Start from here</span>
+                                    <span><i class="icon-calendar"></i>正则表达式：由一套事先定义好的特定字符、及这些特定字符的组合，组成一个“规则字符串”，用于表达对字符串的一种过滤逻辑</span>
                                     <ul>
                                         <li>
                                             <span class="badge badge-success" style="background-color: #1e38ae"><i
@@ -306,8 +305,18 @@
         if (name != null) {
             $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
             $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>")
+            //Menu box
+            $(".myquestionlogin").attr("href", "/myquestion");
+            $(".myquestionlogin").text("My Question");
+            $(".myanswerlogin").attr("href", "/myanswer");
+            $(".myanswerlogin").text("My Answer");
         } else {
             $(".loginname").append("<a href=" + url2 + ">尚未登录</a>");
+            //Menu box
+            $(".myquestionlogin").text("My Queztion- No Login");
+            $(".myquestionlogin").attr("href", "/");
+            $(".myanswerlogin").text("My Answer - No Login");
+            $(".myanswerlogin").attr("href", "/");
         }
     })
 
@@ -319,10 +328,17 @@
         success: function (data) {
             var icontime = "\"icon-time\"";
             $.each(data["allRules"], function (j, rule) {
-                var hrefstr = "\"\"";
-                var strchildren = "<li>"
+                var strchildren="";
+                if(rule.ruleExample!="0") {
+                    var hrefstr = "\"test.html?rule=" + rule.ruleExample + "\"";
+                     strchildren = "<li>"
                     + "<span><i class=" + icontime + "></i>" + rule.ruleContent + "</span> &ndash; <a href=" + hrefstr + ">" + rule.ruleDescribe
                     + "</a></li>";
+                }else {
+                    strchildren = "<li>"
+                        + "<span><i class=" + icontime + "></i>" + rule.ruleContent + "</span> &ndash; <a>" + rule.ruleDescribe
+                        + "</a></li>";
+                }
                 $(".type"+rule.ruleNature).append(strchildren);
             });
         },

@@ -14,15 +14,17 @@ public class RegexRulesE {
     private String ruleContent;
     private String ruleDescribe;
     private Long ruleNature;
+    private String ruleExample;
 
     public RegexRulesE() {
     }
 
-    public RegexRulesE(Long id, String ruleContent, String ruleDescribe, Long ruleNature) {
+    public RegexRulesE(Long id, String ruleContent, String ruleDescribe, Long ruleNature, String ruleExample) {
         this.id = id;
         this.ruleContent = ruleContent;
         this.ruleDescribe = ruleDescribe;
         this.ruleNature = ruleNature;
+        this.ruleExample = ruleExample;
     }
 
     public Long getId() {
@@ -57,6 +59,14 @@ public class RegexRulesE {
         this.ruleNature = ruleNature;
     }
 
+    public String getRuleExample() {
+        return ruleExample;
+    }
+
+    public void setRuleExample(String ruleExample) {
+        this.ruleExample = ruleExample;
+    }
+
     @Override
     public String toString() {
         return "RegexRulesE{" +
@@ -64,6 +74,7 @@ public class RegexRulesE {
                 ", ruleContent='" + ruleContent + '\'' +
                 ", ruleDescribe='" + ruleDescribe + '\'' +
                 ", ruleNature=" + ruleNature +
+                ", ruleExample='" + ruleExample + '\'' +
                 '}';
     }
 }

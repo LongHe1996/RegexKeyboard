@@ -8,7 +8,7 @@
 <!--[if IE 9 ]>
 <html class="ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en"><!--<![endif]-->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"><!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
 
@@ -18,7 +18,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Contact - Airco</title>
+    <title>Profile - RegexKeyboard</title>
 
     <!-- Standard Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images//favicon.ico"/>
@@ -93,7 +93,7 @@
                                 <!-- Container -->
                                 <div class="container">
                                     <!--a class="navbar-brand text-logo" href="index.html">Airco <span>air conditioning</span></a-->
-                                    <a class="image-logo navbar-brand" href="index.html"><img
+                                    <a class="image-logo navbar-brand" href="home.html"><img
                                             src="assets/images/logo.png" alt="Logo"/></a>
                                     <button class="navbar-toggler navbar-toggler-right" type="button"
                                             data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
@@ -114,9 +114,8 @@
                                                    role="button" aria-haspopup="true" aria-expanded="false">Q&amp;A</a>
                                                 <i class="ddl-switch fa fa-angle-down"></i>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="myquestion.html">My Question</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="myanswer.html">My Answer</a></li>
+                                                    <li><a class="dropdown-item  myquestionlogin"></a></li>
+                                                    <li><a class="dropdown-item myanswerlogin"></a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -141,10 +140,10 @@
                     <div class="page-banner">
                         <!-- Container -->
                         <div class="container">
-                            <h3>contact</h3>
+                            <h3>Profile</h3>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active">contact</li>
+                                <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+                                <li class="breadcrumb-item active">Profile</li>
                             </ol>
                         </div><!-- Container /- -->
                     </div><!-- Page Banner /- -->
@@ -153,51 +152,36 @@
                     <div class="container">
                         <!-- Conact Section -->
                         <div class="contact-section">
-                            <div class="section-header">
-                                <h3>Get in touch</h3>
-                                <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel
-                                    velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, </p>
-                                <p>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum
-                                    velit.
-                                    Nam nec tellus a odio tincidunt auctor a ornare odio. </p>
-                            </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="contact-from">
-                                        <form class="row">
-                                            <div class="col-md-6 form-group">
-                                                <input type="text" class="form-control" placeholder="First name *"
-                                                       name="contact-fname" id="input_fname"/>
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <input type="text" class="form-control" placeholder="Last name *"
-                                                       name="contact-lname" id="input_lname"/>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <input type="text" class="form-control" placeholder="Your email *"
-                                                       name="contact-email" id="input_email"/>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <input type="text" class="form-control" placeholder="Phone"
-                                                       name="contact-phone" id="input_phone"/>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <textarea class="form-control" placeholder="Your Message" rows="5"
-                                                          name="textarea-message" id="textarea_message"></textarea>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <input type="submit" id="btn_submit" name="submit"
-                                                       value="send a message"/>
-                                            </div>
-                                            <div id="alert-msg" class="alert-msg"></div>
+                                    <div class="contact-from row">
+                                        <form action="/updateuser" method="POST">
+                                                <input type="hidden" name="id" id="userId" value=""/>
+                                                <input type="hidden" name="userName" id="userName" value=""/>
+                                                <input type="text" class="form-control"  style="margin: 5px;" placeholder="修改昵称"
+                                                       name="nickName"/>
+                                                <input type="email" class="form-control" style="margin: 5px;width: 150%" placeholder="修改邮箱"
+                                                       name="email"/>
+                                                <input type="password" class="form-control" style="margin: 5px;" placeholder="原密码"
+                                                       name="pwd1"/>
+                                                <input type="password" class="form-control" style="margin: 5px;" placeholder="新密码"
+                                                       name="pwd2"/>
+                                                <textarea class="form-control" style="margin: 5px;width: 150%" placeholder="写下你的Bio吧" rows="5"
+                                                          name="bio"></textarea>
+                                                <button type="submit" style="margin: 5px;background: #1e38ae;color: #FFFFFF;border: 0px;" >提交修改</button><button type="reset" style="margin: 5px;background: #1e38ae;color: #FFFFFF;border: 0px;" >清除</button>
+                                                <label id="errorlabel" style="color:#1e38ae" th:text="${error}"></label>
                                         </form>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <!-- Map Section -->
-                                    <div class="map-section">
-                                        <div class="map-canvas" id="contact-map-canvas" data-lat="42.887048"
-                                             data-lng="20.866863" data-string="rrethi te tregu " data-zoom="10"></div>
+                                    <div class="map-section" style="height: 100%;">
+                                        <div style="border:darkgray solid 2px;height: 80%;padding: 5%;">
+                                            <label style="font-size: 20px;padding: 2px;margin: 10px" class="userName-y"><i class="fa fa-user" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;用户名：</i></label><br/>
+                                            <label style="font-size: 20px;padding: 2px;margin: 10px" class="nickName-y"><i class="fa fa-american-sign-language-interpreting" aria-hidden="true">&nbsp;&nbsp;&nbsp;昵称：</i></label><br/>
+                                            <label style="font-size: 20px;padding: 2px;margin: 10px" class="email-y"><i class="fa fa-envelope" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;邮箱：</i></label><br/>
+                                            <label style="font-size: 20px;padding: 2px;margin: 10px" class="bio-y"><i class="fa fa-sign-language" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;Bio：</i></label>
+                                        </div>
                                     </div><!-- Map Section /- -->
                                 </div>
                             </div>
@@ -256,8 +240,24 @@
         if (name != null) {
             $(".loginname").append("<a href=" + url1 + ">" + name + "</a>");
             $(".logindiv").append("<span><i class=" + font + "></i><a href=" + url3 + ">collection</a></span>")
+            $("#userId").attr("value",$.cookie("LoginUserId"));
+            $("#userName").attr("value",$.cookie("LoginUserName"));
+            $(".userName-y").append($.cookie("LoginUserName"));
+            $(".nickName-y").append($.cookie("LoginNickName"));
+            $(".email-y").append($.cookie("LoginEmail"));
+            $(".bio-y").append($.cookie("LoginBio"));
+            //Menu box
+            $(".myquestionlogin").attr("href", "/myquestion");
+            $(".myquestionlogin").text("My Question");
+            $(".myanswerlogin").attr("href", "/myanswer");
+            $(".myanswerlogin").text("My Answer");
         } else {
             $(".loginname").append("<a href=" + url2 + ">尚未登录</a>");
+            //Menu box
+            $(".myquestionlogin").text("My Queztion- No Login");
+            $(".myquestionlogin").attr("href", "/");
+            $(".myanswerlogin").text("My Answer - No Login");
+            $(".myanswerlogin").attr("href", "/");
         }
     })
 </script>

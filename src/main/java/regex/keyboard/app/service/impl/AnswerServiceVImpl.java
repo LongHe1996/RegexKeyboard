@@ -32,19 +32,19 @@ public class AnswerServiceVImpl implements AnswerServiceV {
     public List<OneForAllAnswersDTO> getAllTheAnswersToAQuestion(Long questionId) {
         List<OneForAllAnswersDTO> oneForAllAnswersDTOS = new ArrayList<>();
         List<AnswerDTO> answerDTOS = answerService.selectByQuestionId(questionId);
+        if(answerDTOS.get(0).getSuccess()){
         for (AnswerDTO answerDTO : answerDTOS
                 ) {
             oneForAllAnswersDTOS.add(answerConvertor.dtoToForView(answerDTO));
-        }
+        }}
         return oneForAllAnswersDTOS;
     }
 
     @Override
     public AnswerDTO submitAnswer(AnswerE answerE, String loginUserName, Long questionId) {
         UserDTO userDTO = userService.selectByUserName(loginUserName);
-        QuestionDTO questionDTO = questionService.selectById(questionId);
         answerE.setRespondent(userDTO.getUserE());
-        answerE.setQuestion(questionDTO.getQuestionE());
+        answerE.setQuestionId(questionId);
         answerE.setAccepted(false);
         answerE.setPutTime(new Date());
         AnswerDTO answerDTO = answerService.create(answerE);
@@ -52,5 +52,23 @@ public class AnswerServiceVImpl implements AnswerServiceV {
             answerDTO.setMessage("提交成功");
         }
         return answerDTO;
+    }
+
+    @Override
+    public List<OneForAllAnswersDTO> getAllMyAnswer(Long userId) {
+        List<OneForAllAnswersDTO> allMyAnswers = new ArrayList<>();
+        List<AnswerDTO> answerDTOS = answerService.selectByRespondent(userId);
+        if(!answerDTOS.get(0).getSuccess()){
+            return  allMyAnswers;
+        }
+        for (AnswerDTO answerDTO : answerDTOS
+                ) {
+            OneForAllAnswersDTO oneForAllAnswersDTO = answerConvertor.dtoToForView(answerDTO);
+
+            QuestionDTO questionDTO = questionService.selectById(answerDTO.getAnswerE().getQuestionId());
+            oneForAllAnswersDTO.setNickName(questionDTO.getQuestionE().getQuestionTitle());
+            allMyAnswers.add(oneForAllAnswersDTO);
+        }
+        return allMyAnswers;
     }
 }

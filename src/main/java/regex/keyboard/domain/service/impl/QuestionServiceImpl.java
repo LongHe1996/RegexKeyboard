@@ -38,12 +38,15 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public QuestionDTO updateIfSolved(QuestionE questionE, Long acceptAnswer) {
+        System.out.println("Q:"+questionE);
         QuestionDO questionDO = questionConvertor.entityToDo(questionE);
+        System.out.println("update"+questionDO);
         //1.question不存在
         if (questionRepository.findOne(questionDO.getId()) == null) {
             return new QuestionDTO(null, "error.update.question.accept.answer.not.exist." + questionDO.getId(), false);
         }
         questionDO.setAcceptAnswer(acceptAnswer);
+        questionDO.setSolved(true);
         QuestionDO updateQuestionDO = questionRepository.save(questionDO);
         return new QuestionDTO(questionConvertor.doToEntity(updateQuestionDO), "success.update.question.accept.answer:" + updateQuestionDO, true);
     }

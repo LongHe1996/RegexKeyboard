@@ -93,4 +93,17 @@ public class UserDO {
     public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
     }
+
+    @Override
+    public String toString() {
+        return "UserDO{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", email='" + email + '\'' +
+                ", drowssap='" + drowssap + '\'' +
+                ", bio='" + bio + '\'' +
+                ", registerTime=" + registerTime +
+                '}';
+    }
 }

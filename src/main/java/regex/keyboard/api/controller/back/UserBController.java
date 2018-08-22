@@ -18,4 +18,9 @@ public class UserBController {
     public UserDTO signup(UserE userE) {
         return userServiceV.signUp(userE);
     }
+    public UserDTO updateUser(UserE userE,String pwd){
+        userE.setDrowssap(pwd);
+        System.out.println("B"+userE);
+        return userServiceV.updateUser(userE);
+    }
 }
